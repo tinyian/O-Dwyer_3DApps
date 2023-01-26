@@ -12,63 +12,100 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/b8784e7b89.js" crossorigin="anonymous"></script>
-
-    <title>Hello, world!</title>
   </head>
-  
   <body>
-        <!-- Logo and navbar -->
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Logo and navbar -->
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <div class="container">
             <!-- Brand -->
             <a class="navbar-brand" href="#">Coca Cola's Journey</a>
-        
-        <!-- Collapsible Navbar Menu Icon -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- Link Menu item button to the links class navbar-collapse selector -->
-        <div class="collapse navbar-collapse">
-            <!-- Links -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                
-                <!-- Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Drinks</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Coca Cola</a>
-                        <a class="dropdown-item" href="#">Sprite</a>
-                        <a class="dropdown-item" href="#">Dr. Pepper</a>
-                    </div>
-                </li>
-            </ul>
+            
+            <!-- Collapsible Navbar Menu Icon -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Link Menu item button to the links class navbar-collapse selector -->
+            <div class="collapse navbar-collapse">
+                <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Drinks</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Coca Cola</a>
+                            <a class="dropdown-item" href="#">Sprite</a>
+                            <a class="dropdown-item" href="#">Dr. Pepper</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <br>
     
-    <div class="container-fluid">
-        <h1>Hello, world!</h1>
-        <p>Resize the browser window to see the responsive UI in action.</p>
-        <div class="row">
-            <div class="col-sm-12" style="background-color:red;">.col-sm-12</div>
+    <!-- Main Body -->
+    <div class="container">
+        <div class="row"> <!-- Carousel -->
+            <div class="col-xs-12 col-sm-12" style="background-color:red;">.col-xs-12 col-sm-12 - The background image (or you could use a BS carousel here</div>
         </div>
+        
+        <br> <!-- Temp break until I style the template -->
+        <!-- Row of cards on the grid -->
+        
         <div class="row">
-            <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4 The coca cola image goes here, and the text follows, which can be placed in a div tag and styled accordingly, but not necessarily as shown in the example.</div>
-            <div class="col-sm-4" style="background-color:lightgrey;">.col-sm-4 The sprite goes here, and the text follows, which can be placed in a div tag and styled accordingly, but not necessarily as shown in the example.</div>
-            <div class="col-sm-4" style="background-color:lavender;">.col-sm-4 The dr pepper image goes here, and the text follows, which can be placed in a div tag and styled accordingly, but not necessarily as shown in the example.</div>
+            <!-- Coca-Cola Column -->
+            <div class="col-sm-4">
+                <div class="card">
+                    <a href="#">
+                        <img class="card-img-top img-fluid img-thumbnail" src="Assets/Images/coca_cola.jpg" alt="Coca-Cola">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="card-title">Coca-Cola</h3>
+                        <p class="card-text">.col-xs-12 .col-sm-4 - The coke image goes here, and the text follows, which can be placed ina  div tag and styled accordingly, but not necessary in this example.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sprite Column -->
+            <div class="col-sm-4">
+                <div class="card">
+                    <a href="#">
+                        <img class="card-img-top img-fluid img-thumbnail" src="Assets/Images/sprite.jpg" alt="Sprite">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="card-title">Sprite</h3>
+                        <p class="card-text">.col-xs-12 .col-sm-4 - The sprite image goes here, and the text follows, which can be placed ina  div tag and styled accordingly, but not necessary in this example.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DP Column -->
+            <div class="col-sm-4">
+                <div class="card">
+                    <a href="#">
+                        <img class="card-img-top img-fluid img-thumbnail" src="Assets/Images/dr_pepper.jpg" alt="Dr. Pepper">
+                    </a>
+                    <div class="card-body">
+                        <h3 class="card-title">Dr. Pepper</h3>
+                        <p class="card-text">.col-xs-12 .col-sm-4 - The DP image goes here, and the text follows, which can be placed ina  div tag and styled accordingly, but not necessary in this example.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
     <br> <!-- Temp break until I style the template properly -->
     <!-- Footer -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-text float-left copyright">
                 <p><span class="align-baseline"></span>&copy 2023 Mobile Web 3D Apps </span></p>
             </div>
