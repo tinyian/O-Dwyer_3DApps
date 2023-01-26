@@ -1,0 +1,48 @@
+/* Fonts */
+    /* Method to declare your own fonts */
+    @font-face {
+        src: url(../Assets/Fonts/loki_cola/LOKICOLA.TTF);
+        font-family: cocaColaFont;
+    }
+
+    @font-face {
+        src: url(Assets/Fonts/Open_Sans/static/OpenSans-Regular.ttf);
+        font-family: OpenSans;
+    }
+
+    @font-face {
+        src: url(Assets/Fonts/Oswald/static/Oswald-Regular.ttf);
+        font-family: Oswald;
+    }
+      
+/* Styling */
+    /* Some simple CSS rules for styling p, h1 to h6, etc. in the main content’s container */
+    p {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Oswald', sans-serif;
+        /*font-family: cocaColaFont;
+    }
+
+/* Responsive Breakpoints */
+    /* X-Small devices (portrait phones, less than 576px)
+       No media query for `xs` since this is the default in Bootstrap
+    */
+
+    /* Small devices (landscape phones, 576px and up)*/
+    @media (min-width: 576px) { ... }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) { ... }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) { ... }
+
+    /* X-Large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) { ... }
+
+    /* XX-Large devices (larger desktops, 1400px and up) */
+    @media (min-width: 1400px) { ... }
+
