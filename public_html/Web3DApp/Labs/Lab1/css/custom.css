@@ -14,10 +14,10 @@
         src: url(Assets/Fonts/Oswald/static/Oswald-Regular.ttf);
         font-family: Oswald;
     }
-      
+
 /* Styling */
     /* Some simple CSS rules for styling p, h1 to h6, etc. in the main content’s container */
-    body {
+    html body {
         background-color: rgba(182, 231, 243, 1.0);
     }
 
@@ -26,14 +26,20 @@
         margin-bottom: 10px;
     }
 
-    #main_3d_image {
-        background-image: url(Assets/Images/main_3D.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        /* The div block for the main_3d_image has no vertical size,
-        so we need a height to see the background image */
-        height: 200px;
+    .card {
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(182, 231, 243, 1.0);
     }
+
+    #main_image {
+        background-image: url('../Assets/Images/main.jpg') fixed center no-repeat;
+        background-size: cover;
+        height: 200px;
+    }
+
     #main_text {
         float: left;
         margin: 5%;
@@ -43,30 +49,25 @@
         padding: 10px;
         border-radius: 5px;
     }
+
     #main_text h2 {
         color: rgba(0,102,153,1);
         font-size: 20px;
         margin-top: 0px;
         margin-bottom: 5px;
     }
+
     #main_text h3 {
         font-size: 15px;
         margin-top: 5px;
         margin-bottom: 5px;
     }
+
     #main_text p {
         font-size: 12px;
         margin: 0px;
         line-height: 1.2;
     }
-
-    .card {
-        border: 1px solid rgba(0,0,0,.125);
-        border-radius: .25rem;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        background-color: rgba(182, 231, 243, 1.0);
-     }
 
     p {
         font-family: 'Open Sans', sans-serif;
@@ -96,4 +97,3 @@
 
     /* XX-Large devices (larger desktops, 1400px and up) */
     @media (min-width: 1400px) { ... }
-
