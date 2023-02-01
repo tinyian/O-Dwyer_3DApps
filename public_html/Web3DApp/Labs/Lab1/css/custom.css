@@ -1,23 +1,27 @@
+/* My CSS stylesheet for Lab 1 using Bootstrap. -- O'Dwyer 2023 */
+
 /* Fonts */
-    /* Method to declare your own fonts */
+/* Method to declare your own fonts */
     @font-face {
-        src: url(../Assets/Fonts/loki_cola/LOKICOLA.TTF);
         font-family: cocaColaFont;
+        src: url(assets/fonts/loki_cola/lokicola.ttf);
     }
 
     @font-face {
-        src: url(Assets/Fonts/Open_Sans/static/OpenSans-Regular.ttf);
         font-family: OpenSans;
+        src: url(assets/fonts/Open_Sans/OpenSans-Regular.ttf);
     }
 
     @font-face {
-        src: url(Assets/Fonts/Oswald/static/Oswald-Regular.ttf);
         font-family: Oswald;
+        src: url(assets/fonts/Oswald/static/Oswald-Regular.ttf);
     }
 
 /* Styling */
-    /* Some simple CSS rules for styling p, h1 to h6, etc. in the main content’s container */
-    html body {
+/* X-Small devices (portrait phones, less than 576px)
+   No media query for `xs` since this is the default in Bootstrap*/
+
+    body {
         background-color: rgba(182, 231, 243, 1.0);
     }
 
@@ -26,18 +30,21 @@
         margin-bottom: 10px;
     }
 
-    .card {
-        border: 1px solid rgba(0,0,0,.125);
-        border-radius: .25rem;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        background-color: rgba(182, 231, 243, 1.0);
+/* Some simple CSS rules for styling p, h1 to h6, etc. in the main content’s container */
+
+    p {
+        font-family: 'Open Sans', sans-serif;
     }
 
-    #main_image {
-        background-image: url('../Assets/Images/main.jpg') fixed center no-repeat;
-        background-size: cover;
-        height: 200px;
+    h1, h2, h3, h4, h5, h6 {
+        /*font-family: 'Oswald', sans-serif;*/
+        font-family: cocaColaFont;
+    }
+
+    #main_3d_image {
+        background-image: url(assets/images/main_3d_538.jpg);
+        background-repeat: no-repeat;
+        height: 201px;
     }
 
     #main_text {
@@ -69,31 +76,25 @@
         line-height: 1.2;
     }
 
-    p {
-        font-family: 'Open Sans', sans-serif;
+    .card {
+        border: 1px solid rgba(0,0,0,.125);
+        /* border-radius: .25rem;*/
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: rgba(182, 231, 243, 1.0);
     }
 
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Oswald', sans-serif;
-        /*font-family: cocaColaFont;*/
-    }
-
-/* Responsive Breakpoints */
-    /* X-Small devices (portrait phones, less than 576px)
-       No media query for `xs` since this is the default in Bootstrap
-    */
-
-    /* Small devices (landscape phones, 576px and up)*/
+/* Small devices (landscape phones, 576px and up)*/
     @media (min-width: 576px) { ... }
 
-    /* Medium devices (tablets, 768px and up) */
+/* Medium devices (tablets, 768px and up) */
     @media (min-width: 768px) { ... }
 
-    /* Large devices (desktops, 992px and up) */
+/* Large devices (desktops, 992px and up) */
     @media (min-width: 992px) { ... }
 
-    /* X-Large devices (large desktops, 1200px and up) */
+/* X-Large devices (large desktops, 1200px and up) */
     @media (min-width: 1200px) { ... }
 
-    /* XX-Large devices (larger desktops, 1400px and up) */
+/* XX-Large devices (larger desktops, 1400px and up) */
     @media (min-width: 1400px) { ... }
