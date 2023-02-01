@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonymous">
         
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/custom_fixed.css">
+        
+    <!-- Fonts/Icons -->
+    <script src="https://kit.fontawesome.com/6ac3910c4e.js" crossorigin="anonymous"></script>
         
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -19,18 +22,26 @@
   </head>
   <body>
       <!-- Logo and navbar -->
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav class="navbar sticky-top navbar-expand-sm navbar_coca_cola">
           <div class="container">
             <!-- Brand -->
-            <a class="navbar-brand" href="#">Coca Cola's Journey</a>
+            <div class="logo">
+                <a class="navbar-brand" href="#">
+                    <h1>1</h1>
+                    <h1>oca</h1>
+                    <h2>Cola</h2>
+                    <h3>Journey</h3>
+                    <p>Refreshing the world, one story at a time</p>
+                </a>
+            </div>
             
             <!-- Collapsible Navbar Menu Icon -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarSupportContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
             <!-- Link Menu item button to the links class navbar-collapse selector -->
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -120,7 +131,7 @@
     </div>
     
     <!-- Footer -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm footer">
         <div class="container">
             <div class="navbar-text float-left copyright">
                 <p><span class="align-baseline"></span>&copy 2023 Mobile Web 3D Apps </span></p>
