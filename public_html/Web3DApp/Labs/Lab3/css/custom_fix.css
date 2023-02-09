@@ -41,9 +41,12 @@
     }
 
     #main_3d_image {
-        background-image: url(../assets/images/main_3d_xs.jpg);
+        background-image: url(../assets/images/main_3d_1600x598.jpg);
         background-repeat: no-repeat;
-        height: 201px;
+        background-size: cover;
+        /* The div block for the main_3d_image has no vertical size,
+         so we need a height to see the background image */
+        height: 200px;
     }
 
     #main_text {
@@ -254,10 +257,8 @@
     
     /* Content/Navber */
     #main_3d_image {
-        background-image: url(../assets/images/main_3d_s.jpg);
-        background-repeat: no-repeat;
-        height: 287px;
-    }
+            height: 288px;
+        }
 
     #main_text {
         float: right;
@@ -327,10 +328,8 @@
     
     /* Content/Navber */
     #main_3d_image {
-        background-image: url(../assets/images/main_3d_m.jpg);
-        background-repeat: no-repeat;
-        height: 362px;
-    }
+            height: 363px;
+        }
 
     #main_text {
         float: right;
@@ -401,10 +400,8 @@
     
     /* Content/Navber */
     #main_3d_image {
-        background-image: url(../assets/images/main_3D_l.jpg);
-        background-repeat: no-repeat;
-        height: 371px;
-    }
+            height: 450px;
+        }
 
     #main_text {
         float: right;
@@ -471,13 +468,11 @@
 
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
-   
+    
     #main_3d_image {
-        background-image: url(../assets/images/main_3D_xl.jpg);
-        background-repeat: no-repeat;
-        height: 523px;
-    }
-
+            height: 550px;
+        }
+    
     #main_text {
         float: right;
         margin-top: 28%;
@@ -488,7 +483,7 @@
         margin-bottom: 10px;
         background-color: rgb(182, 231, 243);
     }
-
+    
     .navbar_coca_cola {
         background-color: #760003;
         min-height: 150px;
@@ -498,20 +493,20 @@
     .footer {
         background-color: #760003;
     }
-
+    
     .navbar-text > a {
         font-size: 10px;
     }
-
+    
     .navbar-text > p {
         color: rgb(255, 255, 255);
         font-size: 30px;
     }
-
+    
     .copyright {
         padding-top: 44px;
     }
-
+    
     .social {
         padding-top: 28px;
     }
@@ -521,23 +516,22 @@
         color: green;
         font-size: 1em;
     }
-
+    
     .fa-github-square:before {
         content: "\f092";
         color: yellow;
         font-size: 1em;
     }
-
+    
     .fa-google-plus-square:before {
         content: "\f0d4";
         color: blue;
         font-size: 1em;
     }
-
+    
     .fa-facebook-square:before {
         content: "\f082";
         color: red;
         font-size: 1em;
     }
 }
-
