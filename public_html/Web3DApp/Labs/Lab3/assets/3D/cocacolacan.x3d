@@ -16,11 +16,49 @@
 		            skyColor="0.051 0.051 0.051"
 		            />
 		<Transform DEF="Light_TRANSFORM"
-		           translation="-4.076245 5.903862 1.005454"
+		           translation="-3.944264 9.263375 -4.811971"
 		           scale="1.000000 1.000000 1.000000"
-		           rotation="-0.498084 -0.762016 -0.413815 1.513875"
+		           rotation="-0.098712 -0.972622 -0.210385 1.274842"
 		           >
 			<PointLight DEF="LA_Light"
+			            ambientIntensity="0.0000"
+			            color="1.0000 1.0000 1.0000"
+			            intensity="1.0000"
+			            radius="30.0000" 
+			            location="-0.0000 0.0000 0.0000"
+			            />
+		</Transform>
+		<Transform DEF="Camera_TRANSFORM"
+		           translation="0.000000 11.322157 -32.689594"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="0.000000 1.000000 -0.000000 3.141593"
+		           >
+			<Viewpoint DEF="CA_Camera"
+			           centerOfRotation="0 0 0"
+			           position="0.00 0.00 -0.00"
+			           orientation="0.00 1.00 0.00 0.00"
+			           fieldOfView="1.287"
+			           />
+		</Transform>
+		<Transform DEF="Light_001_TRANSFORM"
+		           translation="4.156118 9.844032 4.923074"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="-0.098712 -0.972622 -0.210385 1.274842"
+		           >
+			<PointLight DEF="LA_Light_001"
+			            ambientIntensity="0.0000"
+			            color="1.0000 1.0000 1.0000"
+			            intensity="1.0000"
+			            radius="30.0000" 
+			            location="0.0000 -0.0000 -0.0000"
+			            />
+		</Transform>
+		<Transform DEF="Light_002_TRANSFORM"
+		           translation="-9.763876 5.075654 6.679922"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="-0.098712 -0.972622 -0.210385 1.274842"
+		           >
+			<PointLight DEF="LA_Light_002"
 			            ambientIntensity="0.0000"
 			            color="1.0000 1.0000 1.0000"
 			            intensity="1.0000"
@@ -28,20 +66,21 @@
 			            location="-0.0000 -0.0000 0.0000"
 			            />
 		</Transform>
-		<Transform DEF="Camera_TRANSFORM"
-		           translation="-7.358891 4.958309 -6.925791"
+		<Transform DEF="Light_003_TRANSFORM"
+		           translation="10.125937 5.075654 -4.443640"
 		           scale="1.000000 1.000000 1.000000"
-		           rotation="-0.098233 -0.968789 -0.227591 2.349487"
+		           rotation="-0.098712 -0.972622 -0.210385 1.274842"
 		           >
-			<Viewpoint DEF="CA_Camera"
-			           centerOfRotation="0 0 0"
-			           position="-0.00 -0.00 0.00"
-			           orientation="-0.00 -0.47 -0.88 0.00"
-			           fieldOfView="0.691"
-			           />
+			<PointLight DEF="LA_Light_003"
+			            ambientIntensity="0.0000"
+			            color="1.0000 1.0000 1.0000"
+			            intensity="1.0000"
+			            radius="30.0000" 
+			            location="-0.0000 0.0000 -0.0000"
+			            />
 		</Transform>
 		<Transform DEF="Can_TRANSFORM"
-		           translation="0.000000 0.000000 0.000000"
+		           translation="0.000000 9.909943 0.000000"
 		           scale="1.000000 1.000000 1.000000"
 		           rotation="0.000000 0.707107 0.707107 3.141593"
 		           >
@@ -97,7 +136,7 @@
 			</Transform>
 		</Transform>
 		<Transform DEF="Tab_TRANSFORM"
-		           translation="0.000000 -0.042397 0.000000"
+		           translation="0.092081 9.867546 0.006587"
 		           scale="1.000000 1.000000 1.000000"
 		           rotation="0.000000 0.707107 0.707107 3.141593"
 		           >
