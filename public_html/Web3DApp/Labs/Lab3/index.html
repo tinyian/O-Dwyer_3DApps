@@ -1,7 +1,8 @@
 <html>
     <head>
+        <meta http-equiv='Content-Type' content='text/html;charset=utf-8'></meta>
         <title>My first X3DOM page</title>
-        <script type='text/javascript' src= 'http://www.x3dom.org/download/x3dom.js'> </script>
+        <script type='text/javascript' src= 'http://www.x3dom.org/x3dom/release/x3dom.js'> </script>
         <style>
             .contents {
                 width: 700px;
@@ -37,9 +38,10 @@
             Conversion of VRML to X3D using the open source viewdscene Application with the resulting X3D embedded into HTML using X3DOM libraries - x3dom.css and x3dom.js.
             </p>
             <div id="modelStyle">
-                <x3d width= '500px' height='400px'>
+                <x3d id='Coke' showStat='false' showLog='false' x='0px' y='0px' width= '500px' height='400px'>
                     <scene>
-                        <p class="centre">This Coke Can was built in Blender and exported to X3D.</p> <inline url="cocacolacan.x3d"> </inline>
+                        <p class="centre">This Coke Can was built in Blender and exported to X3D.</p>
+                        <inline url="../assets/3D/cocacolacan.x3d"> </inline>
                     </scene>
                 </ x3d>
             </div>
