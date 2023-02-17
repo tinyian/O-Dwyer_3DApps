@@ -1,8 +1,9 @@
-<html>
+<html> 
     <head>
-        <meta http-equiv='Content-Type' content='text/html;charset=utf-8'></meta>
-        <title>My first X3DOM page</title>
-        <script type='text/javascript' src= 'http://www.x3dom.org/x3dom/release/x3dom.js'> </script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>Milli's first X3DOM page</title>
+        <script type='text/javascript' src='https://www.x3dom.org/download/x3dom.js'> </script>
+        <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'></link>
         <style>
             .contents {
                 width: 700px;
@@ -34,22 +35,40 @@
     <body>
         <div class="contents">
             <h1 class="centre" "textBox">VRML to X3D Conversion Workflow Result</h1>
-            <p class="textBox";>
-            Conversion of VRML to X3D using the open source viewdscene Application with the resulting X3D embedded into HTML using X3DOM libraries - x3dom.css and x3dom.js.
-            </p>
-            <div id="modelStyle">
-                <x3d id='Coke' showStat='false' showLog='false' x='0px' y='0px' width= '500px' height='400px'>
-                    <scene>
-                        <p class="centre">This Coke Can was built in Blender and exported to X3D.</p>
-                        <inline url="../assets/3D/cocacolacan.x3d"> </inline>
+            <x3d width='500px' height='400px'>
+                <scene>
+                    <inline url="../assets/3d/cocacolacan2.x3d"> </inline>
                     </scene>
-                </ x3d>
-            </div>
-            <p class="textBox";>
-            Should be able to do same using X3D-Edit 4.0.
-            </p>
+                </x3d>
+            <p class="textBox";>Conversion of VRML to X3D using the open source viewdscene Application with the resulting X3D embedded into HTML using X3DOM libraries - x3dom.css and x3dom.js.</p>
+            <x3d id="model3D" width='500px' height='400px'>
+                <scene>
+                    <shape>
+                        <appearance>
+                            <material diffuseColor='1 0 0'></material>
+                        </appearance>
+                        <box></box>
+                    </shape>
+                    
+                    <transform translation='-3 0 0'>
+                    <shape>
+                        <appearance>
+                            <material diffuseColor='0 1 0'></material>
+                        </appearance>
+                        <cone></cone>
+                    </shape>
+                    </transform>
+                    
+                    <transform translation='3 0 0'>
+                    <shape>
+                        <appearance>
+                            <material diffuseColor='0 0 1'></material>
+                        </appearance>
+                        <sphere></sphere>
+                    </shape>
+                    </transform>
+                </scene>
+            </x3d>
         </div>
-    </body>
-    
-    <link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/x3dom.css'></link>
-</html>
+   </body> 
+</html> 
