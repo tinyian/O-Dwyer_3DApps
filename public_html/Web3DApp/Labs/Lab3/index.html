@@ -2,8 +2,8 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <title>Milli's first X3DOM page</title>
-        <script type='text/javascript' src='https://www.x3dom.org/download/x3dom.js'> </script>
-        <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'></link>
+        <script type="text/javascript" src="https://www.x3dom.org/download/x3dom.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://www.x3dom.org/download/x3dom.css">
         <style>
             .contents {
                 width: 700px;
@@ -35,40 +35,16 @@
     <body>
         <div class="contents">
             <h1 class="centre" "textBox">VRML to X3D Conversion Workflow Result</h1>
-            <x3d width='500px' height='400px'>
-                <scene>
-                    <inline url="../assets/3d/cocacolacan2.x3d"> </inline>
-                    </scene>
-                </x3d>
-            <p class="textBox";>Conversion of VRML to X3D using the open source viewdscene Application with the resulting X3D embedded into HTML using X3DOM libraries - x3dom.css and x3dom.js.</p>
-            <x3d id="model3D" width='500px' height='400px'>
-                <scene>
-                    <shape>
-                        <appearance>
-                            <material diffuseColor='1 0 0'></material>
-                        </appearance>
-                        <box></box>
-                    </shape>
-                    
-                    <transform translation='-3 0 0'>
-                    <shape>
-                        <appearance>
-                            <material diffuseColor='0 1 0'></material>
-                        </appearance>
-                        <cone></cone>
-                    </shape>
-                    </transform>
-                    
-                    <transform translation='3 0 0'>
-                    <shape>
-                        <appearance>
-                            <material diffuseColor='0 0 1'></material>
-                        </appearance>
-                        <sphere></sphere>
-                    </shape>
-                    </transform>
-                </scene>
+            <x3d id="COKE" width='500px' height='400px'>
+              <scene>
+                  <pointlight intensity="10" color="1 1 1" location="0 10 0"></pointlight>
+                  <pointlight intensity="10" color="1 1 1" location="0 10 10"></pointlight>
+                  <pointlight intensity="10" color="1 1 1" location="10 10 0"></pointlight>
+                  
+                  <inline url="assets/3d/cocacolacan2.x3d"></inline>
+              </scene>
             </x3d>
+            <p class="textBox";>Conversion of VRML to X3D using the open source viewdscene Application with the resulting X3D embedded into HTML using X3DOM libraries - x3dom.css and x3dom.js.</p>
         </div>
    </body> 
 </html> 
