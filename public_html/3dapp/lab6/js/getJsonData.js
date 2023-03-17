@@ -4,27 +4,29 @@ $(document).ready(function(){
     $.getJSON('./model/data.json', function(jsonObj){
         //index
         home = jsonObj.pageTextData[0];
-        
-        
+        left = jsonObj.pageTextData[1];
+        mid = jsonObj.pageTextData[2];
+        right = jsonObj.pageTextData[3];
+
         //home page text
         $('#title_home').html('<h2>' + home.title + '</h2>');
         $('#subTitle_home').html('<h3>' + home.subTitle + '</h3>');
         $('#description_home').html('<p>' + home.description + '</p>');
         
         //home page, left column text
-        $('#title_left').html('<h2>' + jsonObj.pageTextData[1].title + '</h2>');
-        $('#subTitle_left').html('<h3>' + jsonObj.pageTextData[1].subTitle + '</h3>');
-        $('#description_left').html('<p>' + jsonObj.pageTextData[1].description + '</p>');
+        $('#title_left').html('<h2>' + left.title + '</h2>');
+        $('#subTitle_left').html('<h3>' + left.subTitle + '</h3>');
+        $('#description_left').html('<p>' + left.description + '</p>');
         
         //home page, center column text
-        $('#title_centre').html('<h2>' + jsonObj.pageTextData[2].title + '</h2>');
-        $('#subTitle_centre').html('<h3>' + jsonObj.pageTextData[2].subTitle + '</h3>');
-        $('#description_centre').html('<p>' + jsonObj.pageTextData[2].description + '</p>');
+        $('#title_centre').html('<h2>' + mid.title + '</h2>');
+        $('#subTitle_centre').html('<h3>' + mid.subTitle + '</h3>');
+        $('#description_centre').html('<p>' + mid.description + '</p>');
         
         //home page, right column text
-        $('#title_right').html('<h2>' + jsonObj.pageTextData[3].title + '</h2>');
-        $('#subTitle_right').html('<h3>' + jsonObj.pageTextData[3].subTitle + '</h3>');
-        $('#description_right').html('<p>' + jsonObj.pageTextData[3].description + '</p>');
+        $('#title_right').html('<h2>' + right.title + '</h2>');
+        $('#subTitle_right').html('<h3>' + right.subTitle + '</h3>');
+        $('#description_right').html('<p>' + right.description + '</p>');
         
         //coke X3D main text
         $('#modelTitle_coke').html('<h2>' + jsonObj.pageTextData[4].modelTitle + '</h2>');
