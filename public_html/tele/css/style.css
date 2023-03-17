@@ -15,6 +15,18 @@ body{
     background-size: cover;
 }
 
+#home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: limegreen;
+    background-image: radial-gradient(rgb(15,15,15), limegreen);
+    background-position: center;
+    background-size: cover;
+}
+
 .logo{
     position: absolute;
     text-align: top;
