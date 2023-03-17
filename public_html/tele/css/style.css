@@ -22,14 +22,37 @@ body{
     min-height: 100vh;
     width: 100%;
     background-color: limegreen;
-    background-image: radial-gradient(limegreen, #fff);
+    background-image: linear-gradient(#fff, limegreen);
     background-position: center;
     background-size: cover;
 }
-.logo{
-    position: relative;
-    text-align: top;
-    color: limegreen
+#header{
+    color: limegreen;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    width: 100%;
+}
+#feed{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: limegreen;
+    background-image: linear-gradient(limegreen, rgb(15,15,15));
+    background-position: center;
+    background-size: cover;
+}
+#footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    width: 100%;
+    background-color: rgb(15,15,15);
 }
 .form-box{
     position: relative;
