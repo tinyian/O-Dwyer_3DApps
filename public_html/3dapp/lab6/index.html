@@ -27,20 +27,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <script type="text/javascript">
-        function swap(selected)
-        {
-            <!-- First don't display all div ID content -->
-            document.getElementById('home').style.display = 'none';
-            document.getElementById('coke').style.display = 'none';
-            document.getElementById('sprite').style.display = 'none';
-            document.getElementById('pepper').style.display = 'none';
-            
-            <!-- Then show the selected div ID contents -->
-            document.getElementById(selected).style.display = 'block';
-        }
-    </script>
-    
     <title>O'Dwyer Lab 6 - 3D Mobile Web Application</title>
   </head>
   <body id="body">
@@ -68,7 +54,7 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="javascript:swap('home')">Home</a>
+                        <a class="nav-link active" id="home_btn" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="popover" data-trigger="hover" data-placement="bottom" title="About Web 3D Applications" data-content="3D Apps is a final year and postgraduate module ...">About</a>
@@ -78,9 +64,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Drinks</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:swap('coke')">Coca Cola</a>
-                            <a class="dropdown-item" href="javascript:swap('sprite')">Sprite</a>
-                            <a class="dropdown-item" href="javascript:swap('pepper')">Dr. Pepper</a>
+                            <a class="dropdown-item" id="coke_btn" href="#">Coca Cola</a>
+                            <a class="dropdown-item" id="sprite_btn" href="#">Sprite</a>
+                            <a class="dropdown-item" id="pepper_btn" href="#">Dr. Pepper</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -182,23 +168,17 @@
                             <div class="model3D">
                                 <x3d id="COKE">
                                   <scene>
-                                      <inline nameSpaceName="model" onClick="animateModel();" url="assets/3d/coke.x3d"></inline>
+                                      <viewpoint id="default" position="0.00000 5.00000 20.00000" orientation="0.00000 0.00000 0.00000 0.00000" zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
+                                      
+                                      <viewpoint id="top" position="0.36662 20.02122 0.60197" orientation="-0.99989 -0.01233 -0.00796 1.58333" zNear="5.70882" zFar="26.97537" centerOfRotation="1.11541 10.10273 0.70178" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
+                                      
+                                      <viewpoint id="bottom" position="0.33608 -12.97573 0.67406" orientation="0.99998 -0.00087 -0.00664 1.55817"
+                                          zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
+                                      <transform><inline nameSpaceName="model" onClick="animateModel();" url="assets/3d/coke.x3d"></inline></transform>
                                   </scene>
                                 </x3d>
                             </div>
                             <div id="creationMethod_coke" class="card-text"></div>
-                            <div id="CameraTitle_coke"class="card-subtitle"></div>
-                            <div class="camera-btns">
-                                <div id="CameraSubtitles_coke" class="card-text"></div>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
-                                    <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
-                                    <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
-                                    <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
-                                    <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
-                                    <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
-                                </div>
-                            </div>
                     </div>
                 </div>
             </div>
@@ -209,15 +189,68 @@
                         Gallery
                     </div>
                     <div class="card-body">
-                        <div id="galleryTitle_coke" class="card-title"></div>
-                        <div class="gallery" id="gallery_coke"></div>
+                        <div id="galleryTitle" class="card-title"></div>
+                        <div class="gallery" id="gallery"></div>
                         <div id="galleryDescription_coke" class="card-text drinks_text"></div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Cards on the Grid or Feed -->
+        <!-- Interactions -->
+        <div id="interaction" class="row">
+            <!-- Camera Controls -->
+            <div class="col-sm-4">
+                <div class="card text-left">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <!-- Camera Dropdown -->
+                            <li class="nav-item dropdown">
+                                
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-header" id="CameraTitle">
+                            <div id="CameraSubtitles" class="card-text"></div>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary btn-responsive camera-font"><button onclick="document.getElementById('default').setAttribute('set_bind','true');" >Front</button></a>
+                                <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
+                                <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
+                                <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
+                                <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
+                                <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Animation Controls -->
+            <div class="col-sm-4">
+                <div class="card text-left">
+                    <div class="card-header">
+                        
+                        
+                    </div>
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Render Controls -->
+            <div class="col-sm-4">
+                <div class="card text-left">
+                    <div class="card-header">
+                        
+                    </div>
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Description Cards -->
         <div class="row">
             <!-- Coca-Cola Column -->
             <div class="col-sm-12">
@@ -226,7 +259,7 @@
                         <div id="title_coke"></div>
                         <div id="subTitle_coke"></div>
                         <div id="description_coke"></div>
-                        <a href="javascript:swap('coke')" class="btn btn-primary">Find out more ...</a>
+                        <a href="javascript:swap('coke')" class="btn btn-primary">Visit Coke</a>
                     </div>
                 </div>
             </div>
@@ -260,7 +293,13 @@
                             <div class="model3D">
                                 <x3d id="SPRITE">
                                   <scene>
-                                      <inline url="assets/3d/sprite.x3d"></inline>
+                                      <viewpoint id="front" position="0.00000 5.00000 20.00000" orientation="0.00000 0.00000 0.00000 0.00000" zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
+                                      
+                                      <viewpoint id="topofcan" position="0.36662 20.02122 0.60197" orientation="-0.99989 -0.01233 -0.00796 1.58333" zNear="5.70882" zFar="26.97537" centerOfRotation="1.11541 10.10273 0.70178" fieldOfView="0.78540" description="topX3DViewpointNode"></viewpoint>
+                                      
+                                      <viewpoint id="bottom" position="0.33608 -12.97573 0.67406" orientation="0.99998 -0.00087 -0.00664 1.55817"
+                                          zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
+                                      <transform><inline url="assets/3d/sprite.x3d"></inline></transform>
                                   </scene>
                                 </x3d>
                             </div>
@@ -269,11 +308,11 @@
                             <div class="camera-btns">
                                 <div id="CameraSubtitles_sprite" class="card-text"></div>
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
+                                    <a href="#" class="btn btn-primary btn-responsive camera-font" onClick="front();">Front</a>
                                     <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
                                     <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
                                     <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
-                                    <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
+                                    <a href="#" class="btn btn-warning btn-responsive camera-font" onclick="topofcan();">Top</a>
                                     <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
                                 </div>
                             </div>
@@ -421,6 +460,8 @@
     <script type="text/javascript" src="js/gallery_generator.js"></script>
     <!-- Retrieve from a backend JSON file -->
     <script src="js/getJsonData.js"></script>
+    <!-- JS interactive functions -->
+    <script src="js/interaction.js"></script>
     <!--fancyBox3 Implementation -->
     <script src="js/jquery.fancybox.min.js"></script>
     

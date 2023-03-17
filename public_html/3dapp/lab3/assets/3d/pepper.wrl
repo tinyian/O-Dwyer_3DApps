@@ -3,8 +3,7 @@
 #Created by Cinema 4D
 
 DEF FINAL_MODEL Transform {
-  translation 0.043348 -0.283548 0.329083
-  rotation 0.080779 0.995398 -0.051546 3.937803
+  rotation 0 1 0 3.752458
   children [ 
     DEF DP Transform {
       translation 0 2.232662 0
@@ -21,8 +20,8 @@ DEF FINAL_MODEL Transform {
             }
             texture ImageTexture {
               url "tex/dp_logo.png"
-              repeatS FALSE
-              repeatT FALSE
+              repeatS TRUE
+              repeatT TRUE
             }
           }
           geometry DEF FACESET_DP IndexedFaceSet {
@@ -594,7 +593,7 @@ DEF FINAL_MODEL Transform {
       ]
     }
     DEF Base Transform {
-      translation 0 2.232662 0
+      translation 0 2.217744 0
       children [ 
         Shape {
           appearance USE MAT_Cup
@@ -649,7 +648,7 @@ DEF FINAL_MODEL Transform {
 DEF Physical_Sky Transform {
   children [ 
     DEF Sky_Null Transform {
-      translation -7.431416 2.106625 -0.044684
+      translation -1.7171 0.30627 -4.861629
       children [ 
         DEF Sun Transform {
           translation -1249.195848 593.338905 520.20224
@@ -775,7 +774,8 @@ DEF Light Transform {
   ]
 }
 DEF Camera Transform {
-  translation -7.431416 2.106625 -0.044684
+  translation -1.7171 0.30627 -4.861629
+  rotation -0.038337 -0.997603 0.0576 1.176695
   scale 1 1 1
   children [ 
     DEF View_Camera Viewpoint {
@@ -787,28 +787,3 @@ DEF Camera Transform {
     }
   ]
 }
-DEF Timer TimeSensor {
-  startTime 0
-  stopTime 0
-  cycleInterval 3.75
-  loop TRUE
-}
-DEF POSKEY_FINAL_MODEL PositionInterpolator {
-  key [ 0,0.266667,0.533333,0.8,
-  ]
-  keyValue [ 0.043348 -0.283548 0.329083,0.004508 -0.029489 0.034225,0 0 0,0 0 0,
-    
-  ]
-}
-ROUTE Timer.fraction_changed TO POSKEY_FINAL_MODEL.set_fraction
-ROUTE POSKEY_FINAL_MODEL.value_changed TO FINAL_MODEL.set_translation
-
-DEF ROTKEY_FINAL_MODEL OrientationInterpolator {
-  key [ 0,0.266667,0.533333,0.8,
-  ]
-  keyValue [ 0.080779 0.995398 -0.051546 3.937803,0.00856 0.999953 -0.004511 3.771806,0 1 0 3.752458,0 1 0 3.752458,
-    
-  ]
-}
-ROUTE Timer.fraction_changed TO ROTKEY_FINAL_MODEL.set_fraction
-ROUTE ROTKEY_FINAL_MODEL.value_changed TO FINAL_MODEL.set_rotation

@@ -38,14 +38,22 @@
         <div class="contents">
             <h1 class="centre" "textBox">VRML to X3D Conversion Workflow Result</h1>
             <x3d id="COKE" width='500px' height='400px'>
-              <scene>
-<!--                  <pointlight intensity="10" color="1 1 1" location="0 10 0"></pointlight>-->
-<!--                  <pointlight intensity="10" color="1 1 1" location="0 10 10"></pointlight>-->
-<!--                  <pointlight intensity="10" color="1 1 1" location="10 10 0"></pointlight>-->
-                  
-                  <inline url="assets/3d/pepper.x3d"></inline>
-              </scene>
+                <scene>
+                    <viewpoint id="default" position="0.00000 5.00000 20.00000" orientation="0.00000 0.00000 0.00000 0.00000" zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
+                    
+                    <viewpoint id="top" position="0.36662 20.02122 0.60197" orientation="-0.99989 -0.01233 -0.00796 1.58333" zNear="5.70882" zFar="26.97537" centerOfRotation="1.11541 10.10273 0.70178" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
+                    
+                    <viewpoint id="bottom" position="0.33608 -12.97573 0.67406" orientation="0.99998 -0.00087 -0.00664 1.55817"
+                        zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
+                    
+                    <Transform><inline url="assets/3d/cocacolacan.x3d"></inline></Transform>
+                </scene>
             </x3d>
+            <button onclick="document.getElementById('default').setAttribute('set_bind','true');" > Default View</button>
+
+            <button onclick="document.getElementById('top').setAttribute('set_bind','true');"> Top View</button>
+
+            <button onclick="document.getElementById('bottom').setAttribute('set_bind','true');"> Bottom View</button>
             <p class="textBox";>Conversion of VRML to X3D using the open source viewdscene Application with the resulting X3D embedded into HTML using X3DOM libraries - x3dom.css and x3dom.js.</p>
         </div>
    </body> 

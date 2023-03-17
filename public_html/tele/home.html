@@ -1,67 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=poppins">
     <title>SWATCH & LEARN</title>
 </head>
-  
 <body>
     <section>
-    <div id="home">
-        <nav>
-            <div class="logo">
-              <h1>SWATCH & LEARN</h1>
+        <div class="logo">
+            <a class="nav-logo" href="#">
+                <h1>Swatch </h1>
+                <p>&</p>
+                <h1> Learn</h1>
+            </a>
+        </div>
+        
+        <!-- Link Menu item button to the links class navbar-collapse selector -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Lessons</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Community Swatches</a>
+                </li>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">My Palatte</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Swatches</a>
+                        <a class="dropdown-item" href="#">Inbox</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Main Body -->
+    <div class="container-fluid">
+        <!-- This is the Home page contents -->
+        <div id="home" class="main_contents" style>
+            
+        </div>
+        <!-- End of Home page contents -->
+    </div>
+    
+    <!-- Footer -->
+    <nav class="navbar navbar-expand-sm footer">
+        <div class="container">
+            <div class="navbar-text float-left copyright">
+                <p><span class="align-baseline"></span>&copy 2023 Swatch & Learn</span></p>
             </div>
-            <div class="links">
-                <a href="#">our story</a>
-                <a href="#">practice</a>
-                <a href="#">classes</a>
-            </div>
-            <svg
-                width="44"
-                height="18"
-                viewBox="0 0 44 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <line
-                    class="line"
-                    y1="1"
-                    x2="44"
-                    y2="1"
-                    stroke="white"
-                    stroke-width="2"
-                />
-                <line
-                    class="line"
-                    y1="9"
-                    x2="27"
-                    y2="9"
-                    stroke="white"
-                    stroke-width="2"
-                />
-                <line
-                    class="line"
-                    y1="17"
-                    x2="11"
-                    y2="17"
-                    stroke="white"
-                    stroke-width="2"
-                />
-            </svg>
-        </nav>
-        <div class="landing-page">
-            <h2>Broaden your palatte.</h2>
-            <h3>Essential lessons on color theory to help develop more accessible and practical aesthetics for the future of UI and UX design.</h3>
-            <div class="ctas">
-                <button class="cta-sec">Explore classes</button>
+            <div class="navbar-text float-right social">
+                <a href="#"><i class="fab fa-facebook-square fa-2x"></i></a>
+                <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#"><i class="fab fa-github-square fa-2x"></i></a>
             </div>
         </div>
-    </div>
-    </section>
-    <!-- Decorative Java -->>
+    </nav>
+    
+    <!-- Optional Java -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 </body>
 </html>
