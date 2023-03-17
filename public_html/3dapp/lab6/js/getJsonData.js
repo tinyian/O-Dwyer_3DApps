@@ -3,10 +3,11 @@ $(document).ready(function(){
     //AJAX request to get main text data
     $.getJSON('./model/data.json', function(jsonObj){
         //index
-        home = jsonObj.pageTextData[0];
-        left = jsonObj.pageTextData[1];
-        mid = jsonObj.pageTextData[2];
-        right = jsonObj.pageTextData[3];
+            //home page
+            home = jsonObj.pageTextData[0];
+            left = jsonObj.pageTextData[1];
+            mid = jsonObj.pageTextData[2];
+            right = jsonObj.pageTextData[3];
 
         //home page text
         $('#title_home').html('<h2>' + home.title + '</h2>');

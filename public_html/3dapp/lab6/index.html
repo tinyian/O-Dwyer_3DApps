@@ -6,25 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap2.css" crossorigin="anonymous">
         
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/custom_fix2.css">
     
-    <!-- Use a light box to view images in the gallery -->
-     <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
-
     <!-- X3dom -->
     <link rel='stylesheet' type='text/css' href='css/x3dom.css'>
+           
+    <!-- X3dom JavaScript -->
+    <script type='text/javascript' src='js/x3dom.js'></script>
         
     <!-- Fonts/Icons -->
     <script src="https://kit.fontawesome.com/6ac3910c4e.js" crossorigin="anonymous"></script>
         
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <title>O'Dwyer Lab 6 - 3D Mobile Web Application</title>
+    <script type="text/javascript">
+        function swap(selected)
+        {
+            <!-- First don't display all div ID content -->
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('coke').style.display = 'none';
+            document.getElementById('sprite').style.display = 'none';
+            document.getElementById('pepper').style.display = 'none';
+            
+            <!-- Then show the selected div ID contents -->
+            document.getElementById(selected).style.display = 'block';
+        }
+    </script>
+    
+    <title>O'Dwyer Lab 5 - 3D Mobile Web Application</title>
   </head>
   <body id="body">
       <!-- NAV -->
@@ -51,7 +65,7 @@
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home_btn" href="#">Home</a>
+                        <a class="nav-link active" href="javascript:swap('home')">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="popover" data-trigger="hover" data-placement="bottom" title="About Web 3D Applications" data-content="3D Apps is a final year and postgraduate module ...">About</a>
@@ -61,9 +75,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Drinks</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" id="coke_btn" href="#">Coca Cola</a>
-                            <a class="dropdown-item" id="sprite_btn" href="#">Sprite</a>
-                            <a class="dropdown-item" id="pepper_btn" href="#">Dr. Pepper</a>
+                            <a class="dropdown-item" href="javascript:swap('coke')">Coca Cola</a>
+                            <a class="dropdown-item" href="javascript:swap('sprite')">Sprite</a>
+                            <a class="dropdown-item" href="javascript:swap('pepper')">Dr. Pepper</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -81,9 +95,9 @@
                 <div class="col-sm-12">
                     <div id="main_3d_image">
                             <div id="main_text" class="col-xs-12 col-sm-4">
-                                <div id="title_home"></div>
-                                <div id="subTitle_home"></div>
-                                <div id="description_home"></div>
+                                <h2>Coca-Cola Great Britain</h2>
+                                <h3>Founded by Dr. John S. Pemberton</h3>
+                                <p>The Coca Cola Company is the world's leading manufacturer, marketer and distributor of non-alcoholic beverage concentrates and syrups, and produces nearly 400 brands.</p>
                             </div>
                     </div>
                 </div>
@@ -94,13 +108,12 @@
                 <!-- Coca-Cola Column -->
                 <div class="col-sm-4">
                     <div class="card">
-                        <a href="assets/images/render_imgs/coke.jpg" data-fancybox data-caption="My 3D Coke Can Render" class="thumbnail">
-                            <img class="card-img-top img-fluid img-thumbnail" src="assets/images/site_imgs/coca_cola.jpg" alt="Coca-Cola">
+                        <a href="#">
+                            <img class="card-img-top img-fluid img-thumbnail" src="assets/images/coca_cola.jpg" alt="Coca-Cola">
                         </a>
-                        <div id="drinks_text" class="card-body">
-                            <div id="title_left"></div>
-                            <div id="subTitle_left"></div>
-                            <div id="description_left"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Coca-Cola</h3>
+                            <p class="card-text">It was 1886, John Pemberton, an Atlanta pharmacist, was inspired by simple curiosity. One afternoon, he stirred up a fragrant, caramel-coloured liquid and, when it was done, he carried it a few doors down to Jacobs' Pharmacy. Here, the mixture was combined with carbonated water and sampled by customers who all agreed - this new drink was something special!</p>
                             <a href="javascript:swap('coke')" class="btn btn-primary">Find out more ...</a>
                         </div>
                     </div>
@@ -109,13 +122,12 @@
                 <!-- Sprite Column -->
                 <div class="col-sm-4">
                     <div class="card">
-                        <a href="assets/images/render_imgs/sprite.jpg" data-fancybox data-caption="My 3D Sprite Bottle Render" class="thumbnail">
-                            <img class="card-img-top img-fluid img-thumbnail" src="assets/images/site_imgs/sprite.jpg" alt="Sprite">
+                        <a href="#">
+                            <img class="card-img-top img-fluid img-thumbnail" src="assets/images/sprite.jpg" alt="Sprite">
                         </a>
-                        <div id="drinks_text" class="card-body">
-                            <div id="title_centre"></div>
-                            <div id="subTitle_centre"></div>
-                            <div id="description_centre"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Sprite</h3>
+                            <p class="card-text">First introduced in 1961, crisp, refreshing, clean-tasting Sprite is now the world's leading lemon and lime flavoured soft drink and is sold in more than 190 different countries. Sprite Zero, part of our no sugar Zero range, offers the delicious lemon lime taste of Sprite without the sugar or calories.</p>
                             <a href="javascript:swap('sprite')" class="btn btn-primary">Find out more ...</a>
                         </div>
                     </div>
@@ -124,13 +136,12 @@
                 <!-- DP Column -->
                 <div class="col-sm-4">
                     <div class="card">
-                        <a href="assets/images/render_imgs/pepper.jpg" data-fancybox data-caption="My 3D Dr. Pepper Cup Render" class="thumbnail">
-                            <img class="card-img-top img-fluid img-thumbnail" src="assets/images/site_imgs/dr_pepper.jpg" alt="Dr. Pepper">
+                        <a href="#">
+                            <img class="card-img-top img-fluid img-thumbnail" src="assets/images/dr_pepper.jpg" alt="Dr. Pepper">
                         </a>
-                        <div id="drinks_text" class="card-body">
-                            <div id="title_right"></div>
-                            <div id="subTitle_right"></div>
-                            <div id="description_right"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Dr. Pepper</h3>
+                            <p class="card-text">Dr Pepper's unique, sparkling blend of 23 fruit flavours has been around for well over a century and it's still the same, with that distinctive flavour you just can't quite put your tongue on. It was created by Texas pharmacist Charles Alderton in 1885.</p>
                             <a href="javascript:swap('pepper')" class="btn btn-primary">Find out more ...</a>
                         </div>
                     </div>
@@ -160,22 +171,32 @@
                     </div>
                     <!-- Model Info -->
                     <div class="card-body">
-                        <div id="modelTitle_coke" class="card-title drinks_text"></div>
+                            <h4 class="card-title">Coca Cola X3D Model</h4>
+                            
                             <!-- X3D Code heeeeere -->
+                            <!-- Placeholder image instead
+                                <div id="main_3d_image"></div> -->
                             <div class="model3D">
                                 <x3d id="COKE">
                                   <scene>
-                                      <viewpoint id="default" position="0.00000 5.00000 20.00000" orientation="0.00000 0.00000 0.00000 0.00000" zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
-                                      
-                                      <viewpoint id="top" position="0.36662 20.02122 0.60197" orientation="-0.99989 -0.01233 -0.00796 1.58333" zNear="5.70882" zFar="26.97537" centerOfRotation="1.11541 10.10273 0.70178" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
-                                      
-                                      <viewpoint id="bottom" position="0.33608 -12.97573 0.67406" orientation="0.99998 -0.00087 -0.00664 1.55817"
-                                          zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
-                                      <transform><inline nameSpaceName="model" onClick="animateModel();" url="assets/3d/coke.x3d"></inline></transform>
+                                      <inline url="assets/3d/coke.x3d"></inline>
                                   </scene>
                                 </x3d>
                             </div>
-                            <div id="creationMethod_coke" class="card-text"></div>
+                            
+                            <p class="card-text">This X3D model of a Coke can was made in Cinema 4D, exported to VRML 2, and converted using the view3dscene transcoders, for online display.</p>
+                            <h5 class="card-subtitle">Camera Views</h5>
+                            <div class="camera-btns">
+                                <p class="card-text">These buttons select a range of X3D model viewpoints.</p>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
+                                    <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
+                                    <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
+                                    <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
+                                    <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
+                                    <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -186,77 +207,24 @@
                         Gallery
                     </div>
                     <div class="card-body">
-                        <div id="galleryTitle" class="card-title"></div>
-                        <div class="gallery" id="gallery"></div>
-                        <div id="galleryDescription_coke" class="card-text drinks_text"></div>
+                        <h4 class="card-title">3D Image Gallery</h4>
+                        <div class="gallery" id="gallery_coke"></div>
+                        <p class="card-text">3D images rendered in Cinema 4D</p>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Interactions -->
-        <div id="interaction" class="row">
-            <!-- Camera Controls -->
-            <div class="col-sm-4">
-                <div class="card text-left">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs">
-                            <!-- Camera Dropdown -->
-                            <li class="nav-item dropdown">
-                                
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-header" id="CameraTitle">
-                            <div id="CameraSubtitles" class="card-text"></div>
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-primary btn-responsive camera-font"><button onclick="document.getElementById('default').setAttribute('set_bind','true');" >Front</button></a>
-                                <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
-                                <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
-                                <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
-                                <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
-                                <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Animation Controls -->
-            <div class="col-sm-4">
-                <div class="card text-left">
-                    <div class="card-header">
-                        
-                        
-                    </div>
-                    <div class="card-body">
-                        
-                    </div>
-                </div>
-            </div>
-            <!-- Render Controls -->
-            <div class="col-sm-4">
-                <div class="card text-left">
-                    <div class="card-header">
-                        
-                    </div>
-                    <div class="card-body">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Description Cards -->
+        <!-- Cards on the Grid or Feed -->
         <div class="row">
             <!-- Coca-Cola Column -->
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div id="title_coke"></div>
-                        <div id="subTitle_coke"></div>
-                        <div id="description_coke"></div>
-                        <a href="javascript:swap('coke')" class="btn btn-primary">Visit Coke</a>
+                        <h3 class="card-title">Coca-Cola</h3>
+                        <p class="card-text">Atlanta Beginnings: It was 1886, and in New York Harbour, workers were constructing the Statue of Liberty. Eight hundred miles away, another great American symbol was about to be unveiled.</p>
+                        <p class="card-text">Like many people who change history, John Pemberton, an Atlanta pharmacist, was inspired by simple curiosity. One afternoon, he stirred up a fragrant, caramel-coloured liquid and, when it was done, he carried it a few doors down to Jacobs' Pharmacy. Here, the mixture was combined with carbonated water and sampled by customers who all agreed - this new drink was something special. So Jacobs' Pharmacy put it on sale for five cents (about 3p) a glass.</p>
+                        <a href="javascript:swap('coke')" class="btn btn-primary">Find out more ...</a>
                     </div>
                 </div>
             </div>
@@ -285,31 +253,29 @@
                     </div>
                     <!-- Model Info -->
                     <div class="card-body">
-                        <div id="modelTitle_sprite" class="card-title drinks_text"></div>
+                            <h4 class="card-title">Sprite X3D Model</h4>
+                            
                             <!-- X3D Code heeeeere -->
+                            <!-- Placeholder image instead
+                                <div id="main_3d_image"></div> -->
                             <div class="model3D">
                                 <x3d id="SPRITE">
                                   <scene>
-                                      <viewpoint id="front" position="0.00000 5.00000 20.00000" orientation="0.00000 0.00000 0.00000 0.00000" zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
-                                      
-                                      <viewpoint id="topofcan" position="0.36662 20.02122 0.60197" orientation="-0.99989 -0.01233 -0.00796 1.58333" zNear="5.70882" zFar="26.97537" centerOfRotation="1.11541 10.10273 0.70178" fieldOfView="0.78540" description="topX3DViewpointNode"></viewpoint>
-                                      
-                                      <viewpoint id="bottom" position="0.33608 -12.97573 0.67406" orientation="0.99998 -0.00087 -0.00664 1.55817"
-                                          zNear="9.33041" zFar="32.40775" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description="defaultX3DViewpointNode"></viewpoint>
-                                      <transform><inline url="assets/3d/sprite.x3d"></inline></transform>
+                                      <inline url="assets/3d/sprite.x3d"></inline>
                                   </scene>
                                 </x3d>
                             </div>
-                            <div id="creationMethod_sprite" class="card-text"></div>
-                            <div id="CameraTitle_sprite"class="card-subtitle"></div>
+                            
+                            <p class="card-text">This X3D model of a Sprite Bottle was made in Cinema 4D, exported to VRML 2, and converted using the view3dscene transcoders, for online display.</p>
+                            <h5 class="card-subtitle">Camera Views</h5>
                             <div class="camera-btns">
-                                <div id="CameraSubtitles_sprite" class="card-text"></div>
+                                <p class="card-text">These buttons select a range of X3D model viewpoints.</p>
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-primary btn-responsive camera-font" onClick="front();">Front</a>
+                                    <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
                                     <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
                                     <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
                                     <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
-                                    <a href="#" class="btn btn-warning btn-responsive camera-font" onclick="topofcan();">Top</a>
+                                    <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
                                     <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
                                 </div>
                             </div>
@@ -323,9 +289,9 @@
                         Gallery
                     </div>
                     <div class="card-body">
-                        <div id="galleryTitle_sprite" class="card-title"></div>
+                        <h4 class="card-title">3D Image Gallery</h4>
                         <div class="gallery" id="gallery_sprite"></div>
-                        <div id="galleryDescription_sprite" class="card-text drinks_text"></div>
+                        <p class="card-text">3D images rendered in Cinema 4D</p>
                     </div>
                 </div>
             </div>
@@ -337,9 +303,8 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div id="title_sprite"></div>
-                        <div id="subTitle_sprite"></div>
-                        <div id="description_sprite"></div>
+                        <h3 class="card-title">Sprite</h3>
+                        <p class="card-text">Insert Sprite history here.</p>
                         <a href="javascript:swap('sprite')" class="btn btn-primary">Find out more ...</a>
                     </div>
                 </div>
@@ -369,8 +334,11 @@
                     </div>
                     <!-- Model Info -->
                     <div class="card-body">
-                        <div id="modelTitle_pepper" class="card-title drinks_text"></div>
+                            <h4 class="card-title">Dr. Pepper X3D Model</h4>
+                            
                             <!-- X3D Code heeeeere -->
+                            <!-- Placeholder image instead
+                                <div id="main_3d_image"></div> -->
                             <div class="model3D">
                                 <x3d id="PEPPER">
                                   <scene>
@@ -378,10 +346,11 @@
                                   </scene>
                                 </x3d>
                             </div>
-                            <div id="creationMethod_pepper" class="card-text"></div>
-                            <div id="CameraTitle_pepper"class="card-subtitle"></div>
+                            
+                            <p class="card-text">This X3D model of a Dr. Pepper cup was made in Cinema 4D, exported to VRML 2, and converted using the view3dscene transcoders, for online display.</p>
+                            <h5 class="card-subtitle">Camera Views</h5>
                             <div class="camera-btns">
-                                <div id="CameraSubtitles_pepper" class="card-text"></div>
+                                <p class="card-text">These buttons select a range of X3D model viewpoints.</p>
                                 <div class="btn-group">
                                     <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
                                     <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
@@ -401,9 +370,9 @@
                         Gallery
                     </div>
                     <div class="card-body">
-                        <div id="galleryTitle_pepper" class="card-title"></div>
+                        <h4 class="card-title">3D Image Gallery</h4>
                         <div class="gallery" id="gallery_pepper"></div>
-                        <div id="galleryDescription_pepper" class="card-text drinks_text"></div>
+                        <p class="card-text">3D images rendered in Cinema 4D</p>
                     </div>
                 </div>
             </div>
@@ -415,9 +384,8 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <div id="title_pepper"></div>
-                        <div id="subTitle_pepper"></div>
-                        <div id="description_pepper"></div>
+                        <h3 class="card-title">Dr. Pepper</h3>
+                        <p class="card-text">Insert DP history here.</p>
                         <a href="javascript:swap('pepper')" class="btn btn-primary">Find out more ...</a>
                     </div>
                 </div>
@@ -444,24 +412,12 @@
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script type='text/javascript' src="scripts/js/jquery-3.6.3.js"></script>
-    <script type='text/javascript' src="js/popper.min.js"></script>
-    <script type='text/javascript' src="js/bootstrap.js"></script>
-    <script type='text/javascript' src='js/x3dom.js'></script>
-    
+    <script src="scripts/js/jquery-3.5.1.js"></script>
+    <script src="scripts/js/popper.min.js"></script>
+    <script src="scripts/js/bootstrap.js"></script>
     <!-- Custom JavaScript -->
-    <!-- Enable Popovers -->
-    <script type="text/javascript" src="js/custom.js"></script>
-    <!-- Swap for SPA and Restyler -->
+    <script src="scripts/js/custom2.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/swap_restyle.js"></script>
-    <!-- PHP Images Galleries -->
     <script type="text/javascript" src="js/gallery_generator.js"></script>
-    <!-- Retrieve from a backend JSON file -->
-    <script src="js/getJsonData.js"></script>
-    <!-- Interactive functions -->
-    <script src="js/interaction.js"></script>
-    <!--fancyBox3 Implementation -->
-    <script src="js/jquery.fancybox.min.js"></script>
-    
   </body>
 </html>
