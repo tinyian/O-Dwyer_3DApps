@@ -12,12 +12,21 @@ $(document).ready(function(){
         $("#coke").hide();
         $("#sprite").hide();
         $("#pepper").hide();
+        $("#interaction").hide();
+        $("#cokeDescription").hide();
+        $("#spriteDescription").hide();
+        $("#pepperDescription").hide();
         
         $("#home_btn").click(function(){
             $("#home").show();
             $("#coke").hide();
             $("#sprite").hide();
             $("#pepper").hide();
+            $("#modelDIV").hide();
+            $("#interaction").hide();
+            $("#cokeDescription").hide();
+            $("#spriteDescription").hide();
+            $("#pepperDescription").hide();
         });
         
         $("#coke_btn").click(function(){
@@ -25,6 +34,11 @@ $(document).ready(function(){
             $("#coke").show();
             $("#sprite").hide();
             $("#pepper").hide();
+            $("#modelDIV").show();
+            $("#interaction").show();
+            $("#cokeDescription").show();
+            $("#spriteDescription").hide();
+            $("#pepperDescription").hide();
         });
         
         $("#sprite_btn").click(function(){
@@ -32,6 +46,11 @@ $(document).ready(function(){
             $("#coke").hide();
             $("#sprite").show();
             $("#pepper").hide();
+            $("#modelDIV").show();
+            $("#interaction").show();
+            $("#cokeDescription").hide();
+            $("#spriteDescription").show();
+            $("#pepperDescription").hide();
         });
         
         $("#pepper_btn").click(function(){
@@ -39,6 +58,11 @@ $(document).ready(function(){
             $("#coke").hide();
             $("#sprite").hide();
             $("#pepper").show();
+            $("#modelDIV").show();
+            $("#interaction").show();
+            $("#cokeDescription").hide();
+            $("#spriteDescription").hide();
+            $("#pepperDescription").show();
         });
     }
 });
