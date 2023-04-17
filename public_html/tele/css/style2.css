@@ -3,9 +3,14 @@ body {
   width: 100vw;
   display: grid;
   place-items: center;
-  background-color: black;
+  background-color: rgb(15,15,15);
   margin: 0px;
   overflow: hidden;
+}
+
+h1 {
+    color: white;
+    float: center;
 }
 
 #wrapper {

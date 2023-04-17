@@ -264,6 +264,40 @@
                         </div>
                     </div>
                 </div>
+                <!-- Render Controls -->
+                <div class="col-sm-4">
+                    <div class="card text-left">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <!-- Dropdown -->
+                                <li class="nav-item dropdown show">
+                                    <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="true">Cameras</a>
+                                    <div class="dropdown-menu show" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 42px, 0px);">
+                                        <a class="dropdown-item" href="#" onclick="cameraFront();">Front</a>
+                                        <a class="dropdown-item" href="#" onclick="cameraBack();">Back</a>
+                                        <a class="dropdown-item" href="#" onclick="cameraLeft();">Left</a>
+                                        <a class="dropdown-item" href="#" onclick="cameraRight();">Right</a>
+                                        <a class="dropdown-item" href="#" onclick="cameraTop();">Top</a>
+                                        <a class="dropdown-item" href="#" onclick="cameraBottom();">Bottom</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div id="CameraTitle" class="card-subtitle"></div>
+                            <div class="camera-btns">
+                                <div id="CameraSubtitles" class="card-text"></div>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-danger btn-responsive camera-font" onClick="model_reset();">Reset</a>
+                                    <a href="#" class="btn btn-secondary btn-responsive camera-font" onClick="model_back();">Back</a>
+                                    <a href="#" class="btn btn-success btn-responsive camera-font" onClick="model_left();">Left</a>
+                                    <a href="#" class="btn btn-success btn-responsive camera-font" onClick="model_right();">Right</a>
+                                    <a href="#" class="btn btn-outline-dark disabled btn-responsive">Off</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
             </div> <!-- End of Interaction row -->
             
