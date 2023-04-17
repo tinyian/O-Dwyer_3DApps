@@ -12,27 +12,38 @@
                 <link rel="stylesheet" href="css/custom.css">
     </head>
     
-    <nav>
-        <div id="nav-logo-section" class="nav-section">
-            <a href="#">COCA-COLA</a>
-        </div>
+    <nav data-toggled="false" data-transitionable="false">
+      <div id="nav-logo-section" class="nav-section">
+        <a href="#">
+          <h1>Coca-Cola</h1>
+          <p>& Friends
+          <i class="fa-light fa-flower"></i></p>
+        </a>
+      </div>
+      <div id="nav-mobile-section">
         <div id="nav-link-section" class="nav-section">
-            <a href="#">ABOUT</a>
-            <a href="#">MODELS</a>
+          <a href="#">OUR STORY</a>
+          <a href="#">MODELS</a>
         </div>
         <div id="nav-social-section" class="nav-section">
-            <a href="#">
-                <i class="fa-brands fa-twitter"></i>
-            </a>
-            <a href="#">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" class="fa-brands fa-facebook"></i>
-            </a>
+          <a href="https://www.facebook.com/cocacolaGB">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/cocacolagbi/">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/CocaCola_GB">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
         </div>
         <div id="nav-contact-section" class="nav-section">
-            <a href="#">CONTACT</a>
+          <a href="#">CONTACT</a>
         </div>
+      </div>
+      <button id="nav-toggle-button" type="button" onclick="handleNavToggle()">
+        <span>MENU</span>
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </nav>
     
     <main>
