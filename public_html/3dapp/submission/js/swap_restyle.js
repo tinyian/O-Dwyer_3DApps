@@ -9,60 +9,28 @@ $(document).ready(function(){
     function selectPage() {
         
         $("#home").show();
-        $("#coke").hide();
-        $("#sprite").hide();
-        $("#pepper").hide();
         $("#interaction").hide();
-        $("#cokeDescription").hide();
-        $("#spriteDescription").hide();
-        $("#pepperDescription").hide();
         
         $("#home_btn").click(function(){
             $("#home").show();
-            $("#coke").hide();
-            $("#sprite").hide();
-            $("#pepper").hide();
-            $("#modelDIV").hide();
             $("#interaction").hide();
-            $("#cokeDescription").hide();
-            $("#spriteDescription").hide();
-            $("#pepperDescription").hide();
+            $("#modelTitle_pepper").hide();
+            $("#open_int").hide();
+            $("#close_int").hide();
         });
         
-        $("#coke_btn").click(function(){
-            $("#home").hide();
-            $("#coke").show();
-            $("#sprite").hide();
-            $("#pepper").hide();
-            $("#modelDIV").show();
+        $("#open_int").click(function(){
             $("#interaction").show();
-            $("#cokeDescription").show();
-            $("#spriteDescription").hide();
-            $("#pepperDescription").hide();
+            $("#modelTitle_pepper").hide();
+            $("#open_int").hide();
+            $("#close_int").show();
         });
         
-        $("#sprite_btn").click(function(){
-            $("#home").hide();
-            $("#coke").hide();
-            $("#sprite").show();
-            $("#pepper").hide();
-            $("#modelDIV").show();
-            $("#interaction").show();
-            $("#cokeDescription").hide();
-            $("#spriteDescription").show();
-            $("#pepperDescription").hide();
-        });
-        
-        $("#pepper_btn").click(function(){
-            $("#home").hide();
-            $("#coke").hide();
-            $("#sprite").hide();
-            $("#pepper").show();
-            $("#modelDIV").show();
-            $("#interaction").show();
-            $("#cokeDescription").hide();
-            $("#spriteDescription").hide();
-            $("#pepperDescription").show();
+        $("#close_int").click(function(){
+            $("#interaction").hide();
+            $("#modelTitle_pepper").show();
+            $("#open_int").show();
+            $("#close_int").hide();
         });
     }
 });

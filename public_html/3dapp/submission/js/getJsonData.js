@@ -5,50 +5,53 @@ $(document).ready(function(){
         //index
             //home page
             home = jsonObj.pageTextData[0];
-            left = jsonObj.pageTextData[1];
-            mid = jsonObj.pageTextData[2];
-            right = jsonObj.pageTextData[3];
+            card1 = jsonObj.pageTextData[1];
+            card2 = jsonObj.pageTextData[2];
+            card3 = jsonObj.pageTextData[3];
+            coke = jsonObj.pageTextData[4];
+            sprite = jsonObj.pageTextData[5];
+            pepper = jsonObj.pageTextData[6];
 
-        //home page text
+        //home page, main card text
         $('#title_home').html('<h2>' + home.title + '</h2>');
-        $('#subTitle_home').html('<h3>' + home.subTitle + '</h3>');
-        $('#description_home').html('<p>' + home.description + '</p>');
+        $('#subTitle_home').html('<h2>' + home.subTitle + '</h2>');
+        $('#description_home').html('<h4>' + home.description + '</h4>');
         
-        //home page, left column text
-        $('#title_left').html('<h2>' + left.title + '</h2>');
-        $('#subTitle_left').html('<h3>' + left.subTitle + '</h3>');
-        $('#description_left').html('<p>' + left.description + '</p>');
+        //home page, gallery card 1 text
+        $('#title_card1').html('<h2>' + card1.title + '</h2>');
+        $('#subTitle_card1').html('<h2>' + card1.subTitle + '</h2>');
+        $('#description_card1').html('<h4>' + card1.description + '</h4>');
         
-        //home page, center column text
-        $('#title_centre').html('<h2>' + mid.title + '</h2>');
-        $('#subTitle_centre').html('<h3>' + mid.subTitle + '</h3>');
-        $('#description_centre').html('<p>' + mid.description + '</p>');
+        //home page, gallery card 2 text
+        $('#title_card2').html('<h2>' + card2.title + '</h2>');
+        $('#subTitle_card2').html('<h2>' + card2.subTitle + '</h2>');
+        $('#description_card2').html('<h4>' + card2.description + '</h4>');
         
-        //home page, right column text
-        $('#title_right').html('<h2>' + right.title + '</h2>');
-        $('#subTitle_right').html('<h3>' + right.subTitle + '</h3>');
-        $('#description_right').html('<p>' + right.description + '</p>');
+        //home page, gallery card 3 text
+        $('#title_card3').html('<h2>' + card3.title + '</h2>');
+        $('#subTitle_card3').html('<h2>' + card3.subTitle + '</h2>');
+        $('#description_card3').html('<h4>' + card3.description + '</h4>');
         
         //coke X3D main text
-        $('#modelTitle_coke').html('<h2>' + jsonObj.pageTextData[4].modelTitle + '</h2>');
-        $('#creationMethod_coke').html('<p>' + jsonObj.pageTextData[4].creationMethod + '</p>');
-        $('#title_coke').html('<h2>' + jsonObj.pageTextData[4].title + '</h2>');
-        $('#subTitle_coke').html('<h3>' + jsonObj.pageTextData[4].subTitle + '</h3>');
-        $('#description_coke').html('<p>' + jsonObj.pageTextData[4].description + '</p>');
+        $('#modelTitle_coke').html('<h2>' + coke.modelTitle + '</h2>');
+        $('#creationMethod_coke').html('<h4>' + coke.creationMethod + '</h4>');
+        $('#title_coke').html('<h2>' + coke.title + '</h2>');
+        $('#subTitle_coke').html('<p>' + coke.subTitle + '</p>');
+        $('#description_coke').html('<h4>' + coke.description + '</h4>');
         
         //sprite X3D main text
-        $('#modelTitle_sprite').html('<h2>' + jsonObj.pageTextData[5].modelTitle + '</h2>');
-        $('#creationMethod_sprite').html('<p>' + jsonObj.pageTextData[5].creationMethod + '</p>');
-        $('#title_sprite').html('<h2>' + jsonObj.pageTextData[5].title + '</h2>');
-        $('#subTitle_sprite').html('<h3>' + jsonObj.pageTextData[5].subTitle + '</h3>');
-        $('#description_sprite').html('<p>' + jsonObj.pageTextData[5].description + '</p>');
+        $('#modelTitle_sprite').html('<h2>' + sprite.modelTitle + '</h2>');
+        $('#creationMethod_sprite').html('<h4>' + sprite.creationMethod + '</h4>');
+        $('#title_sprite').html('<h2>' + sprite.title + '</h2>');
+        $('#subTitle_sprite').html('<p>' + sprite.subTitle + '</p>');
+        $('#description_sprite').html('<h4>' + sprite.description + '</h4>');
         
         //pepper X3D main text
-        $('#modelTitle_pepper').html('<h2>' + jsonObj.pageTextData[6].modelTitle + '</h2>');
-        $('#creationMethod_pepper').html('<p>' + jsonObj.pageTextData[6].creationMethod + '</p>');
-        $('#title_pepper').html('<h2>' + jsonObj.pageTextData[6].title + '</h2>');
-        $('#subTitle_pepper').html('<h3>' + jsonObj.pageTextData[6].subTitle + '</h3>');
-        $('#description_pepper').html('<p>' + jsonObj.pageTextData[6].description + '</p>');
+        $('#modelTitle_pepper').html('<h2>' + pepper.modelTitle + '</h2>');
+        $('#creationMethod_pepper').html('<h4>' + pepper.creationMethod + '</h4>');
+        $('#title_pepper').html('<h2>' + pepper.title + '</h2>');
+        $('#subTitle_pepper').html('<p>' + pepper.subTitle + '</p>');
+        $('#description_pepper').html('<h4>' + pepper.description + '</h4>');
         
         //gallery text
         $('#galleryTitle').html('<h4>' + jsonObj.pageTextData[7].galleryTitle + '</h4>');

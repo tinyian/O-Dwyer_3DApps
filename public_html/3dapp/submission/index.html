@@ -8,123 +8,242 @@
             <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-                        <!-- Custom CSS -->
-                <link rel="stylesheet" href="css/custom.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel='stylesheet' type='text/css' href='css/x3dom.css'>
+        <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
     </head>
+        <!-- Navigation -->
+        <nav data-toggled="false" data-transitionable="false">
+          <div id="nav-logo-section" class="nav-section">
+            <a id="home_btn" href="#">
+              <h1>CocaCola</h1>
+              <p>x YOU</p>
+            </a>
+          </div>
+          <div id="nav-mobile-section">
+            <div id="nav-link-section" class="nav-section">
+              <a href="#">OUR STORY</a>
+              <a href="#">MODELS</a>
+            </div>
+            <div id="nav-social-section" class="nav-section">
+              <a href="https://www.facebook.com/cocacolaGB">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a href="https://www.instagram.com/cocacolagbi/">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://twitter.com/CocaCola_GB">
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+            </div>
+            <div id="nav-contact-section" class="nav-section">
+              <a href="#">CONTACT</a>
+            </div>
+          </div>
+          <button id="nav-toggle-button" type="button" onclick="handleNavToggle()">
+            <span>MENU</span>
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </nav>
     
-    <nav data-toggled="false" data-transitionable="false">
-      <div id="nav-logo-section" class="nav-section">
-        <a href="#">
-          <h1>Coca-Cola</h1>
-          <p>& Friends
-          <i class="fa-light fa-flower"></i></p>
-        </a>
-      </div>
-      <div id="nav-mobile-section">
-        <div id="nav-link-section" class="nav-section">
-          <a href="#">OUR STORY</a>
-          <a href="#">MODELS</a>
-        </div>
-        <div id="nav-social-section" class="nav-section">
-          <a href="https://www.facebook.com/cocacolaGB">
-            <i class="fa-brands fa-facebook"></i>
-          </a>
-          <a href="https://www.instagram.com/cocacolagbi/">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="https://twitter.com/CocaCola_GB">
-            <i class="fa-brands fa-twitter"></i>
-          </a>
-        </div>
-        <div id="nav-contact-section" class="nav-section">
-          <a href="#">CONTACT</a>
-        </div>
-      </div>
-      <button id="nav-toggle-button" type="button" onclick="handleNavToggle()">
-        <span>MENU</span>
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </nav>
-    
-    <main>
-        <article data-index="0" data-status="active">
-            <div class="article-image-section article-section"></div>
-            <div class="article-description-section article-section">
-                <h2>Coca-Cola Great Britain</h2>
-                <p>Founded in 1886 Dr. John S. Pemberton</p>
-                <h4>The Coca-Cola Company is the world's leading manufacturer, marketer and distributor of non-alcoholic beverage concentrates and syrups, and produces nearly 400 brands.</h4>
-            </div>
-            <div class="article-title-section article-section">
-                <h2>THE CONGLOMERATE...</h2>
-                <i class="fa-light fa-plus-large"></i>
-            </div>
-            <div class="article-nav-section article-section">
-                <button class="article-nav-button" type="button" onclick="handleLeftClick()">
-                    <i class="fa-light fa-arrow-left-long"></i>
-                </button>
-                <button class="article-nav-button" type="button" onclick="handleRightClick()">
-                    <i class="fa-light fa-arrow-right-long"></i>
-                </button>
-            </div>
-        </article>
-        <article data-index="1" data-status="inactive">
-            <div class="article-image-section article-section"></div>
-            <div class="article-description-section article-section">
-                <h1>Coca-Cola</h1><p>New York Harbour, 1886</p><h4>
-                    It was 1886, John Pemberton, an Atlanta pharmacist, was inspired by simple curiosity. One afternoon, he stirred up a fragrant, caramel-coloured liquid and, when it was done, he carried it a few doors down to Jacobs' Pharmacy. Here, the mixture was combined with carbonated water and sampled by customers who all agreed - this new drink was something special!
-                </h4><br><a class="source-link" href="https://www.coca-cola.co.uk/" target="_blank">VISIT COCA-COLA...</a>
-            </div>
-            <div class="article-title-section article-section">
-                <h2>THE RED ONE...</h2>
-                <i class="fa-light fa-plus-large"></i>
-            </div>
-            <div class="article-nav-section article-section">
-                <button class="article-nav-button" type="button" onclick="handleLeftClick()">
-                    <i class="fa-light fa-arrow-left-long"></i>
-                </button>
-                <button class="article-nav-button" type="button" onclick="handleRightClick()">
-                    <i class="fa-light fa-arrow-right-long"></i>
-                </button>
-            </div>
-        </article>
-        <article data-index="2" data-status="inactive"><div class="article-image-section article-section"></div>
-            <div class="article-description-section article-section">
-                <h1>Sprite</h1><p>West Germany, 1959</p><h4>First introduced in 1961, crisp, refreshing, clean-tasting Sprite is now the world's leading lemon and lime flavoured soft drink and is sold in more than 190 different countries. Sprite Zero, part of our no sugar Zero range, offers the delicious lemon lime taste of Sprite without the sugar or calories.
-                </h4><br><a class="source-link" href="https://www.sprite.com/" target="_blank">VISIT SPRITE...</a>
-            </div>
-            <div class="article-title-section article-section">
-                <h2>THE GREEN ONE...</h2>
-                <i class="fa-light fa-plus-large"></i>
-            </div>
-            <div class="article-nav-section article-section">
-                <button class="article-nav-button" type="button" onclick="handleLeftClick()">
-                    <i class="fa-light fa-arrow-left-long"></i>
-                </button>
-                <button class="article-nav-button" type="button" onclick="handleRightClick()">
-                    <i class="fa-light fa-arrow-right-long"></i>
-                </button>
-            </div>
-        </article>
-        <article data-index="3" data-status="inactive"><div class="article-image-section article-section"></div>
-            <div class="article-description-section article-section">
-                <h1>Dr. Pepper</h1><p>Texas, 1885</p><h4>Dr Pepper's unique, sparkling blend of 23 fruit flavours has been around for well over a century and it's still the same, with that distinctive flavour you just can't quite put your tongue on. It was created by Texas pharmacist Charles Alderton in 1885.</h4><br><a class="source-link" href="https://www.drpepper.com/s/" target="_blank">VISIT DR. PEPPER...</a>
-            </div>
-            <div class="article-title-section article-section">
-                <h2>THE OTHER RED ONE...</h2>
-                <i class="fa-light fa-plus-large"></i>
-            </div>
-            <div class="article-nav-section article-section">
-                <button class="article-nav-button" type="button" onclick="handleLeftClick()">
-                    <i class="fa-light fa-arrow-left-long"></i>
-                </button>
-                <button class="article-nav-button" type="button" onclick="handleRightClick()">
-                    <i class="fa-light fa-arrow-right-long"></i>
-                </button>
-            </div>
-        </article>
-    </main>
+        <!-- SPA Main Contents -->
+        <main id="home">
+            <!-- Home Gallery -->
+            <article data-index="0" data-status="active">
+                <div class="article-image-section article-section"></div>
+                <div class="article-description-section article-section">
+                    <div id="subTitle_home"></div><br>
+                    <div id="description_home"></div>
+                </div>
+                <div class="article-title-section article-section">
+                    <div id="title_home"></div>
+                    <i class="fa-light fa-plus-large"></i>
+                </div>
+                <div class="article-nav-section article-section">
+                    <button class="article-nav-button" type="button" onclick="handleLeftClick()">
+                        <i class="fa-light fa-arrow-left-long"></i>
+                    </button>
+                    <button class="article-nav-button" type="button" onclick="handleRightClick()">
+                        <i class="fa-light fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </article>
+            <article data-index="1" data-status="inactive">
+                <div class="article-image-section article-section"></div>
+                <div class="article-description-section article-section">
+                    <div id="subTitle_card1"></div><br>
+                    <div id="description_card1"></div><br>
+                    <a class="source-link" href="https://www.coca-cola.co.uk/" target="_blank">VISIT COCA-COLA...</a>
+                </div>
+                <div class="article-title-section article-section">
+                    <div id="title_card1"></div>
+                    <i class="fa-light fa-plus-large"></i>
+                </div>
+                <div class="article-nav-section article-section">
+                    <button class="article-nav-button" type="button" onclick="handleLeftClick()">
+                        <i class="fa-light fa-arrow-left-long"></i>
+                    </button>
+                    <button class="article-nav-button" type="button" onclick="handleRightClick()">
+                        <i class="fa-light fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </article>
+            <article data-index="2" data-status="inactive"><div class="article-image-section article-section"></div>
+                <div class="article-description-section article-section">
+                    <div id="subTitle_card2"></div><br>
+                    <div id="description_card2"></div><br>
+                    <a class="source-link" href="https://www.sprite.com/" target="_blank">VISIT SPRITE...</a>
+                </div>
+                <div class="article-title-section article-section">
+                    <div id="title_card2"></div>
+                    <i class="fa-light fa-plus-large"></i>
+                </div>
+                <div class="article-nav-section article-section">
+                    <button class="article-nav-button" type="button" onclick="handleLeftClick()">
+                        <i class="fa-light fa-arrow-left-long"></i>
+                    </button>
+                    <button class="article-nav-button" type="button" onclick="handleRightClick()">
+                        <i class="fa-light fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </article>
+            <article data-index="3" data-status="inactive"><div class="article-image-section article-section"></div>
+                <div class="article-description-section article-section">
+                    <div id="subTitle_card3"></div><br>
+                    <div id="description_card3"></div><br>
+                    <a class="source-link" href="https://www.drpepper.com/s/" target="_blank">VISIT DR. PEPPER...</a>
+                </div>
+                <div class="article-title-section article-section">
+                    <div id="title_card3"></div>
+                    <i class="fa-light fa-plus-large"></i>
+                </div>
+                <div class="article-nav-section article-section">
+                    <button class="article-nav-button" type="button" onclick="handleLeftClick()">
+                        <i class="fa-light fa-arrow-left-long"></i>
+                    </button>
+                    <button class="article-nav-button" type="button" onclick="handleRightClick()">
+                        <i class="fa-light fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </article>
+        <!-- End of Home Gallery -->
+        
+        <!-- SPA 3D Models -->
+            <article data-index="4" data-status="inactive">
+                <div class="article-model-section article-section">
+                    <x3d>
+                      <scene>
+                          <inline nameSpaceName="model" onclick="animateModel();" url="assets/3d/coke.x3d"></inline>
+                      </scene>
+                    </x3d>
+                </div>
+                <div class="article-description-section article-section">
+                    <div id="title_coke"></div>
+                    <div id="subTitle_coke"></div>
+                    <div id="description_coke"></div>
+                </div>
+                <div class="article-title-section article-section">
+                    <div id="modelTitle_coke"></div>
+                    <i onclick="spin();" class="fa-light fa-plus-large"></i>
+                </div>
+                <div class="article-nav-section article-section">
+                    <button class="article-nav-button" type="button" onclick="handleLeftClick()">
+                        <i class="fa-light fa-arrow-left-long"></i>
+                    </button>
+                    <button class="article-nav-button" type="button" onclick="handleRightClick()">
+                        <i class="fa-light fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </article>
+            <article data-index="5" data-status="inactive">
+                <div class="article-model-section article-section">
+                    <x3d>
+                      <scene>
+                          <inline nameSpaceName="model" url="assets/3d/sprite.x3d"></inline>
+                      </scene>
+                    </x3d>
+                </div>
+                <div class="article-description-section article-section">
+                    <div id="title_sprite"></div>
+                    <div id="subTitle_sprite"></div>
+                    <div id="description_sprite"></div>
+                </div>
+                <div class="article-title-section article-section">
+                    <div id="modelTitle_sprite"></div>
+                    <i class="fa-light fa-plus-large"></i>
+                </div>
+                <div class="article-nav-section article-section">
+                    <button class="article-nav-button" type="button" onclick="handleLeftClick()">
+                        <i class="fa-light fa-arrow-left-long"></i>
+                    </button>
+                    <button class="article-nav-button" type="button" onclick="handleRightClick()">
+                        <i class="fa-light fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </article>
+            <article data-index="6" data-status="inactive">
+                <div class="article-model-section article-section">
+                    <x3d>
+                        <scene>
+                            <inline nameSpaceName="model" mapDEFToID="true" onclick="animateModel();" url="assets/x3d/pepper.x3d"> </inline>
+                        </scene>
+                    </x3d>
+                </div>
+                <div class="article-description-section article-section">
+                    <div id="title_pepper"></div>
+                    <div id="subTitle_pepper"></div>
+                    <div id="description_pepper"></div>
+                </div>
+                <div class="article-title-section article-section">
+                    <div id="interaction" style="display:none;">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <!-- Dropdown -->
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Cameras</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div id="CameraTitle" class="card-subtitle"></div>
+                            <div class="camera-btns">
+                                <div id="CameraSubtitles" class="card-text"></div>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-danger btn-responsive camera-font" onClick="model_reset();">Reset</a>
+                                    <a href="#" class="btn btn-secondary btn-responsive camera-font" onClick="model_back();">Back</a>
+                                    <a href="#" class="btn btn-success btn-responsive camera-font" onClick="model_left();">Left</a>
+                                    <a href="#" class="btn btn-success btn-responsive camera-font" onClick="model_right();">Right</a>
+                                    <a href="#" class="btn btn-outline-dark disabled btn-responsive">Off</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modelTitle_pepper"></div>
+                    <i id="open_int" class="fa-light fa-plus-large"></i>
+                    <i id="close_int" class="fa-light fa-xmark-large" style="display:none;"></i>
+                </div>
+                <div class="article-nav-section article-section">
+                    <button class="article-nav-button" type="button" onclick="handleLeftClick()">
+                        <i class="fa-light fa-arrow-left-long"></i>
+                    </button>
+                    <button class="article-nav-button" type="button" onclick="handleRightClick()">
+                        <i class="fa-light fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </article>
+        </main>
+        <!-- End of Models -->
+        
     
     <!-- JS -->
+    <script src="js/jquery-3.6.3.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/getJsonData.js"></script>
+    <script type='text/javascript' src='js/x3dom.js'></script>
+    <script type="text/javascript" src="js/swap_restyle.js"></script>
+    <script type="text/javascript" src="js/gallery_generator.js"></script>
+    <script type="text/javascript" src="js/interaction.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
   </body>
 </html>

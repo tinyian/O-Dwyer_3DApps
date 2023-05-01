@@ -4,6 +4,12 @@
   --highlight-color: rgb(182, 231, 243);
 }
 
+/* Custom Fonts */
+@font-face {
+    font-family: cocaColaFont;
+    src: url(../assets/fonts/loki_cola/lokicola.ttf);
+}
+
 body {
   background-color: var(--background-color);
   display: flex;
@@ -17,14 +23,21 @@ body {
   box-sizing: border-box;
 }
 
-h1, h2, h3, a, p, span {
+h1 {
+    font-family: cocaColaFont;
+    font-size: 36px;
+    color: white;
+    margin: 0px;
+}
+
+div > h2, h3, a, p, span {
   font-family: 'Righteous', cursive;
   font-weight: 400;
   color: white;
   margin: 0px;
 }
 
-h4 {
+div > h4 {
   font-family: system, sans-serif;
   font-weight: 100;
   color: white;
@@ -36,8 +49,8 @@ a {
 }
 
 a:hover {
-/*   color: var(--highlight-color); */
-  text-decoration: underline;
+  color: var(--highlight-color);
+/*  text-decoration: underline;*/
 }
 
 nav {
@@ -200,7 +213,7 @@ main > article > .article-description-section {
   padding: 4rem;
 }
 
-main > article > .article-description-section > p {
+main > article > .article-description-section > div > p {
   color: rgba(255, 255, 255, 0.5);
   font-size: 1.25em;
 }
@@ -219,7 +232,7 @@ main > article > .article-title-section * {
   color: white;
 }
 
-main > article > .article-title-section > h2 {
+main > article > .article-title-section > div > h2 {
   flex-basis: 50%;
   font-family: 'Righteous', cursive;
   font-size: 3.5rem;
@@ -251,6 +264,8 @@ main > article > .article-nav-section > .article-nav-button:nth-child(2) {
   border-left: 1px solid var(--border-color);
 }
 
+/* Medium Devices */
+
 @media(max-width: 1200px) {
   #nav-mobile-section {
     flex-basis: calc(100% * 0.75);
@@ -275,7 +290,7 @@ main > article > .article-nav-section > .article-nav-button:nth-child(2) {
     height: max(900px, 100%);
   }
    
-  main > article > .article-title-section > h2 {
+  main > article > .article-title-section > div > h2 {
     font-size: 3rem;
     line-height: 2.6rem;
   }
@@ -308,6 +323,8 @@ main > article > .article-nav-section > .article-nav-button:nth-child(2) {
     order: 4;
   }
 }
+
+/* Small Devices */
 
 @media(max-width: 800px) {
   nav {
@@ -376,7 +393,7 @@ main > article > .article-nav-section > .article-nav-button:nth-child(2) {
     padding: 2rem;
   }
   
-  main > article > .article-title-section > h2 {
+  main > article > .article-title-section > div > h2 {
     flex-basis: 70%;
     font-size: 1.75em;
     line-height: 1.5rem;
@@ -395,9 +412,42 @@ main > article > .article-nav-section > .article-nav-button:nth-child(2) {
   }
 }
 
-/* -- YT link / Source link styles -- */
+/* X3D */
+main > article > .article-model-section {
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px;
+  height: 500px;
+}
 
-main > article > .article-description-section > p  > .source-link {
-  color: var(--highlight-color);
-  display: inline;
+x3d {
+    position: relative;
+    float: left;
+    cursor: pointer;
+    margin: 0;
+    padding: 5;
+    width: 100%;
+    height: 100%;
+}
+
+/* Gallery */
+
+#gallery{
+    width:50px;
+}
+
+#gallery_cell{
+    padding:0px;
+    background: ivory;
+    border:1px solid red;
+    min-width:100px;
+    height:80px;
+    text-align:center;
+    border-radius:10px;
+}
+
+#image_thumbnail{
+    max-width:100px;
+    max-height:80px;
 }
