@@ -24,7 +24,7 @@
           </div>
           <div id="nav-mobile-section">
             <div id="nav-link-section" class="nav-section">
-              <a href="#">OUR STORY</a>
+              <a href="https://github.com/tinyian/ODwyer_Web-Mobile3D/tree/main/public_html/3dapp/submission">OUR STORY</a>
               <a href="#" data-open-gallery>GALLERY</a>
                 <dialog gallery-modal>
                     <!-- 3D Image Gallery -->
