@@ -73,25 +73,25 @@ function changeLook()
     counter += 1;
     switch (counter){
         case 1:
-            document.getElementById('nav-logo-section').style.backgroundColor = 'ivory';
-            document.getElementById('nav').style.backgroundColor = '#FF0000';
-            document.getElementById('footer').style.backgroundColor = '#FF9900';
+            document.getElementById('nav-logo-section').style.backgroundColor = 'rgb(56, 0, 118)';
+            document.getElementById('nav').style.backgroundColor = 'rgb(62, 118, 0)';
+            document.getElementById('footer').style.backgroundColor = 'rgb(0, 118, 115)';
             break;
         case 2:
-            document.getElementById('nav-logo-section').style.backgroundColor = 'darkgrey';
-            document.getElementById('nav').style.backgroundColor = '#0000FF';
-            document.getElementById('footer').style.backgroundColor = '#0099FF';
+            document.getElementById('nav-logo-section').style.backgroundColor = 'rgb(118, 56, 0)';
+            document.getElementById('nav').style.backgroundColor = 'rgb(118, 115, 0)';
+            document.getElementById('footer').style.backgroundColor = 'rgb(0, 118, 56)';
             break;
             
         case 3:
-            document.getElementById('nav-logo-section').style.backgroundColor = 'coral';
-            document.getElementById('nav').style.backgroundColor = 'darkcyan';
-            document.getElementById('footer').style.backgroundColor = 'darksalmon';
+            document.getElementById('nav-logo-section').style.backgroundColor = 'rgb(118, 27, 0)';
+            document.getElementById('nav').style.backgroundColor = 'rgb(118, 86, 0)';
+            document.getElementById('footer').style.backgroundColor = 'rgb(92, 118, 0)';
             break;
         case 4:
-            document.getElementById('nav-logo-section').style.backgroundColor = 'lightgrey';
-            document.getElementById('nav').style.backgroundColor = 'chocolate';
-            document.getElementById('footer').style.backgroundColor = 'dimgrey';
+            document.getElementById('nav-logo-section').style.backgroundColor = 'rgb(89, 0, 2)';
+            document.getElementById('nav').style.backgroundColor = 'rgb(59, 0, 2)';
+            document.getElementById('footer').style.backgroundColor = 'rgb(29, 0, 1)';
             break;
     }
 }
