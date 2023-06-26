@@ -1,6 +1,5 @@
-import '../css/style.css';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import * as THREE from '../node_modules/.vite/deps/three.js?v=734c07de';
+import { OrbitControls } from '../node_modules/.vite/deps/three_examples_jsm_controls_OrbitControls.js?v=46295345';
 
 // Setup
 
@@ -60,12 +59,12 @@ Array(200).fill().forEach(addStar);
 
 // Background
 
-const spaceTexture = new THREE.TextureLoader().load('../assets/images/bedroom.jpg');
+const spaceTexture = new THREE.TextureLoader().load('../dissertation/assets/images/bedroom.jpg');
 scene.background = spaceTexture;
 
 // Avatar
 
-const batTexture = new THREE.TextureLoader().load('../assets/images/bat.jpg');
+const batTexture = new THREE.TextureLoader().load('../dissertation/assets/images/bat.jpg');
 
 const bat = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: batTexture }));
 
@@ -73,8 +72,8 @@ scene.add(bat);
 
 // paper
 
-const paperTexture = new THREE.TextureLoader().load('../assets/images/paper.jpg');
-const normalTexture = new THREE.TextureLoader().load('../assets/images/normal.jpg');
+const paperTexture = new THREE.TextureLoader().load('../dissertation/assets/images/paper.jpg');
+const normalTexture = new THREE.TextureLoader().load('../dissertation/assets/images/normal.jpg');
 
 const paper = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),

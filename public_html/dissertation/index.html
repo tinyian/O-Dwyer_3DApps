@@ -4,23 +4,24 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Immersify</title>
   </head>
-  <body>
+  <body onload="onPageLoad()" onload="onLoad()">
     <canvas id="bg"></canvas>
     
-    <main>
-          <header>
+    <main class="menu">
+          <header class="menu-item">
             <h1>Immersify</h1>
             <p>🎶 Welcome!</p>
           </header>
 
 
-          <blockquote>
+          <blockquote class="menu-item">
             <p>Your music has never looked so good.</p>
           </blockquote>
 
-          <section>
+          <section class="menu-item">
             <h2>🔌 Get Connected</h2>
             <div id="tokenSection">
                 <label for="clientId" class="form-label">Client ID</label>
@@ -33,7 +34,7 @@
             </div>
           </section>
 
-          <section class="light">
+          <section class="light menu-item">
             <h2>🎤 Your Listening Hub</h2>
 
             <div id="deviceSection">
@@ -92,11 +93,11 @@
 
           </section>
 
-          <blockquote>
+          <blockquote class="menu-item">
             <p>Music on. World off.<br>-AJay Deluxe</p>
           </blockquote>
 
-          <section class="left">
+          <section class="left menu-item">
               <h2>🏆 Accomplishments</h2>
 
               <div id="refSection">
@@ -125,12 +126,13 @@
 
           </section>
 
-          <blockquote>
+          <blockquote class="menu-item">
             <p>🔁 Replay?</p>
           </blockquote>
     </main>
     
     <script type="module" src="js/main.js"></script>
     <script type="text/javascript" src="js/spotifyApi.js"></script>
+    <script type="text/javascript" src="js/scroll.js"></script>
   </body>
 </html>
