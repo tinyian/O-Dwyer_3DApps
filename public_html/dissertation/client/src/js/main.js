@@ -28,17 +28,17 @@ scene.add(torus);
 
 // Lights
 
-const pointLight = new THREE.PointLight(0xffffff);
+const pointLight = new THREE.PointLight(0x2CF2DD, 75);
 pointLight.position.set(5, 5, 5);
 
-const ambientLight = new THREE.AmbientLight(0xffffff);
+const ambientLight = new THREE.AmbientLight(0x404040, 25);
 scene.add(pointLight, ambientLight);
 
 // Helpers
-
-// const lightHelper = new THREE.PointLightHelper(pointLight)
-// const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper)
+//const skeleHelper = new THREE.SkeletonHelper(torus);
+//const lightHelper = new THREE.PointLightHelper(pointLight)
+//const gridHelper = new THREE.GridHelper(200, 50);
+//scene.add(lightHelper, gridHelper, skeleHelper);
 
 // const controls = new OrbitControls(camera, renderer.domElement);
 

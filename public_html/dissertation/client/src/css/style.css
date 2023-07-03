@@ -8,14 +8,8 @@
     font-style: normal;
 }
 
-.menu {
-    position: relative;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.menu-item {
-    position: relative;
+html {
+    background-color: var(--dark-bg);
 }
 
 main {

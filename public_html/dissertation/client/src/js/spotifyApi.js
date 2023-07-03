@@ -1,13 +1,11 @@
 var redirect_uri = "http://users.sussex.ac.uk/~io202/dissertation/client/public/index.html";
- 
 
 var client_id = "";
-var client_secret = "";
+var client_secret = ""; // In a real app you should not expose your client_secret to the user
 
 var access_token = null;
 var refresh_token = null;
 var currentPlaylist = "";
-var radioButtons = [];
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -21,6 +19,9 @@ const PLAYER = "https://api.spotify.com/v1/me/player";
 const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
+const profileURL = "https://api.spotify.com/v1/me";
+const artistsURL = "https://api.spotify.com/v1/me/top/artists?limit=5";
+const tracksURL = "https://api.spotify.com/v1/me/top/tracks?limit=10";
 
 function onPageLoad(){
     client_id = localStorage.getItem("client_id");
@@ -37,12 +38,19 @@ function onPageLoad(){
         else {
             // we have an access token so present device section
             document.getElementById("deviceSection").style.display = 'block';
+            
+            const topArtists = fetchTopArtists();
+            const topTracks = fetchTopTracks();
+            const profile = fetchProfile();
+            populateUI(profile);
+            populateTopArtists(topArtists);
+            populateTopTracks(topArtists, topTracks);
+            
             refreshDevices();
             refreshPlaylists();
             currentlyPlaying();
         }
     }
-    refreshRadioButtons();
 }
 
 function handleRedirect(){
@@ -72,7 +80,7 @@ function requestAuthorization(){
     url += "&response_type=code";
     url += "&redirect_uri=" + encodeURI(redirect_uri);
     url += "&show_dialog=true";
-    url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private";
+    url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private user-top-read";
     window.location.href = url; // Show Spotify's authorization screen
 }
 
@@ -123,8 +131,34 @@ function handleAuthorizationResponse(){
     }
 }
 
+function callApi(method, url, body, callback){
+    let xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
+    xhr.send(body);
+    xhr.onload = callback;
+}
+
+function handleApiResponse(){
+    if ( this.status == 200){
+        console.log(this.responseText);
+        setTimeout(currentlyPlaying, 2000);
+    }
+    else if ( this.status == 204 ){
+        setTimeout(currentlyPlaying, 2000);
+    }
+    else if ( this.status == 401 ){
+        refreshAccessToken()
+    }
+    else {
+        console.log(this.responseText);
+        alert(this.responseText);
+    }
+}
+
 function refreshDevices(){
-    callApi( "GET", DEVICES, null, handleDevicesResponse );
+    callApi( "GET", DEVICES, null, handleDevicesResponse);
 }
 
 function handleDevicesResponse(){
@@ -150,15 +184,6 @@ function addDevice(item){
     document.getElementById("devices").appendChild(node);
 }
 
-function callApi(method, url, body, callback){
-    let xhr = new XMLHttpRequest();
-    xhr.open(method, url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
-    xhr.send(body);
-    xhr.onload = callback;
-}
-
 function refreshPlaylists(){
     callApi( "GET", PLAYLISTS, null, handlePlaylistsResponse );
 }
@@ -167,9 +192,11 @@ function handlePlaylistsResponse(){
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
         console.log(data);
+        
         removeAllItems( "playlists" );
         data.items.forEach(item => addPlaylist(item));
         document.getElementById('playlists').value=currentPlaylist;
+//        document.getElementById('playlistArt').src=data.items.images.url;
     }
     else if ( this.status == 401 ){
         refreshAccessToken()
@@ -233,23 +260,6 @@ function transfer(){
     body.device_ids = [];
     body.device_ids.push(deviceId())
     callApi( "PUT", PLAYER, JSON.stringify(body), handleApiResponse );
-}
-
-function handleApiResponse(){
-    if ( this.status == 200){
-        console.log(this.responseText);
-        setTimeout(currentlyPlaying, 2000);
-    }
-    else if ( this.status == 204 ){
-        setTimeout(currentlyPlaying, 2000);
-    }
-    else if ( this.status == 401 ){
-        refreshAccessToken()
-    }
-    else {
-        console.log(this.responseText);
-        alert(this.responseText);
-    }
 }
 
 function deviceId(){
@@ -340,7 +350,7 @@ function refreshRadioButtons(){
     let data = localStorage.getItem("radio_button");
     if ( data != null){
         radioButtons = JSON.parse(data);
-        if (Array.isArray(radioButtons)){
+        if ( Array.isArray(radioButtons) ){
             removeAllItems("radioButtons");
             radioButtons.forEach( (item, index) => addRadioButton(item, index));
         }
@@ -354,6 +364,7 @@ function onRadioButton( deviceId, playlistId ){
     body.offset.position = 0;
     body.offset.position_ms = 0;
     callApi( "PUT", PLAY + "?device_id=" + deviceId, JSON.stringify(body), handleApiResponse );
+    //callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId, null, handleApiResponse );
 }
 
 function addRadioButton(item, index){
@@ -362,4 +373,106 @@ function addRadioButton(item, index){
     node.innerText = index;
     node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
     document.getElementById("radioButtons").appendChild(node);
+}
+
+function fetchProfile() {
+    callApi( "GET", profileURL, null, populateUI );
+}
+
+function populateUI(profile) {
+    if ( this.status == 200 ){
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        const profileTag = data;
+        if ( profileTag != null ){
+            document.getElementById("displayName").innerText = profileTag.display_name;
+            const profileImage = new Image(200, 200);
+            profileImage.src = profileTag.images[0].url;
+            document.getElementById("avatar").appendChild(profileImage);
+            document.getElementById("imgUrl").innerText = profileTag.images[0].url;
+            document.getElementById("id").innerText = profileTag.id;
+            document.getElementById("email").innerText = profileTag.email;
+            document.getElementById("uri").innerText = profileTag.uri;
+            document.getElementById("uri").setAttribute("href", profileTag.external_urls.spotify);
+            document.getElementById("url").innerText = profileTag.href;
+            document.getElementById("url").setAttribute("href", profileTag.href);
+        }
+    }
+    else if ( this.status == 204 ){
+
+    }
+    else if ( this.status == 401 ){
+        refreshAccessToken()
+    }
+    else {
+//        console.log(this.responseText);
+//        alert(this.responseText);
+    }
+}
+
+function fetchTopArtists() {
+    callApi( "GET", artistsURL + "&time_range=short_term", null, populateTopArtists );
+}
+
+function populateTopArtists(topArtists) {
+    if ( this.status == 200 ){
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        const top5Tag = data;
+        for (let i = 0; i < 5; i++) {
+            let arr = top5Tag.items[i].name;
+            document.getElementById("topartist").innerHTML += JSON.stringify(arr) + " | ";
+        }
+    }
+    else if ( this.status == 204 ){
+
+    }
+    else if ( this.status == 401 ){
+        refreshAccessToken()
+    }
+    else {
+//        console.log(this.responseText);
+//        alert(this.responseText);
+    }
+}
+
+function fetchTopTracks() {
+    callApi( "GET", tracksURL + "&time_range=short_term", null, populateTopTracks );
+}
+
+function populateTopTracks(topArtists, topTracks) {
+    if ( this.status == 200 ){
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        const top10Tag = data;
+        for (let i = 0; i < 10; i++) {
+            
+            let arrSong = top10Tag.items[i].name;
+            let arrArtist = top10Tag.items[i].artists;
+            let arrLength = top10Tag.items[i].artists.length;
+            
+            if (arrLength != 1) {
+                document.getElementById("toptrack").innerHTML += JSON.stringify(arrSong) + " - ";
+
+                for (let j = 0; j <= arrLength-1; j++) {
+                    document.getElementById("toptrack").innerHTML += JSON.stringify(arrArtist[j].name);
+                }
+                document.getElementById("toptrack").innerHTML += " | "
+            }
+                
+            else {
+                document.getElementById("toptrack").innerHTML += JSON.stringify(arrSong) + " - " + JSON.stringify(arrArtist[0].name) + " | ";
+            }
+        }
+    }
+    else if ( this.status == 204 ){
+
+    }
+    else if ( this.status == 401 ){
+        refreshAccessToken()
+    }
+    else {
+//        console.log(this.responseText);
+//        alert(this.responseText);
+    }
 }
