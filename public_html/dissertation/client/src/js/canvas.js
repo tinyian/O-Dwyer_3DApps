@@ -8,7 +8,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg'),
+  canvas: document.querySelector('#webgl'),
 });
 
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -21,14 +21,14 @@ renderer.render(scene, camera);
 // Torus
 
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0x41F22C });
+const material = new THREE.MeshStandardMaterial({ color: 0xDBCAED });
 const torus = new THREE.Mesh(geometry, material);
 
 scene.add(torus);
 
 // Lights
 
-const pointLight = new THREE.PointLight(0x2CF2DD, 75);
+const pointLight = new THREE.PointLight(0xFAfAFA, 25);
 pointLight.position.set(5, 5, 5);
 
 const ambientLight = new THREE.AmbientLight(0x404040, 25);
@@ -59,7 +59,7 @@ Array(200).fill().forEach(addStar);
 
 // Background
 
-const spaceTexture = new THREE.TextureLoader().load('../src/assets/images/bedroom.jpg');
+const spaceTexture = new THREE.TextureLoader().load('../src/assets/images/bedroom.png');
 
 scene.background = spaceTexture;
 

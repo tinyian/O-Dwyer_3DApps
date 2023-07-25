@@ -33,11 +33,13 @@ function onPageLoad(){
         access_token = localStorage.getItem("access_token");
         if ( access_token == null ){
             // we don't have an access token so present token section
+            document.getElementById("deviceSection").style.display = 'none';
             document.getElementById("tokenSection").style.display = 'block';
         }
         else {
             // we have an access token so present device section
             document.getElementById("deviceSection").style.display = 'block';
+            document.getElementById("tokenSection").style.display = 'none';
             
             const topArtists = fetchTopArtists();
             const topTracks = fetchTopTracks();
@@ -46,9 +48,9 @@ function onPageLoad(){
             populateTopArtists(topArtists);
             populateTopTracks(topArtists, topTracks);
             
+            fetchTracks();
             refreshDevices();
             refreshPlaylists();
-            currentlyPlaying();
         }
     }
 }
@@ -144,9 +146,13 @@ function handleApiResponse(){
     if ( this.status == 200){
         console.log(this.responseText);
         setTimeout(currentlyPlaying, 2000);
+        setTimeout(refreshPlaylists, 2000);
+        setTimeout(fetchTracks, 2000);
     }
     else if ( this.status == 204 ){
         setTimeout(currentlyPlaying, 2000);
+        setTimeout(refreshPlaylists, 2000);
+        setTimeout(fetchTracks, 2000);
     }
     else if ( this.status == 401 ){
         refreshAccessToken()
@@ -194,9 +200,11 @@ function handlePlaylistsResponse(){
         console.log(data);
         
         removeAllItems( "playlists" );
+        removeAllItems( "playlistArt" );
         data.items.forEach(item => addPlaylist(item));
         document.getElementById('playlists').value=currentPlaylist;
-//        document.getElementById('playlistArt').src=data.items.images.url;
+        
+        data.items.forEach(item => addArt(item));
     }
     else if ( this.status == 401 ){
         refreshAccessToken()
@@ -204,6 +212,17 @@ function handlePlaylistsResponse(){
     else {
         console.log(this.responseText);
         alert(this.responseText);
+    }
+}
+
+function addArt(item) {
+    const playlist_art = new Image(200, 200);
+    playlist_art.src = item.images[0].url;
+    
+    if (item.id == currentPlaylist) {
+        document.getElementById("playlistArt").appendChild(playlist_art);
+        document.getElementById("playlistTitle").innerText = item.name + " by ";
+        document.getElementById("playlistOwner").innerText = item.owner.display_name;
     }
 }
 
@@ -224,14 +243,10 @@ function removeAllItems( elementId ){
 function play(){
     let playlist_id = document.getElementById("playlists").value;
     let trackindex = document.getElementById("tracks").value;
-    let album = document.getElementById("album").value;
     let body = {};
-    if ( album.length > 0 ){
-        body.context_uri = album;
-    }
-    else{
-        body.context_uri = "spotify:playlist:" + playlist_id;
-    }
+    
+    body.context_uri = "spotify:playlist:" + playlist_id;
+    
     body.offset = {};
     body.offset.position = trackindex.length > 0 ? Number(trackindex) : 0;
     body.offset.position_ms = 0;
@@ -277,9 +292,22 @@ function fetchTracks(){
 function handleTracksResponse(){
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
+        let i = 0;
+        let ms  = 0;
         console.log(data);
         removeAllItems( "tracks" );
         data.items.forEach( (item, index) => addTrack(item, index));
+        document.getElementById("trackTotal").innerText = data.items.length + " songs";
+        
+        while (data.items[i] != null){
+            ms += data.items[i].track.duration_ms;
+            i++;
+        }
+        
+        let min = (ms / 1000) / 60;
+        let sec = (ms / 1000) % 60;
+                   
+        document.getElementById("duration_ms").innerHTML = ", " + Math.round(min) + " min " + Math.round(sec) + " sec";
     }
     else if ( this.status == 401 ){
         refreshAccessToken()
@@ -326,7 +354,7 @@ function handleCurrentlyPlayingResponse(){
         }
     }
     else if ( this.status == 204 ){
-
+            document.getElementById("albumImage").src = "../public/spotify.png";
     }
     else if ( this.status == 401 ){
         refreshAccessToken()
@@ -335,44 +363,6 @@ function handleCurrentlyPlayingResponse(){
         console.log(this.responseText);
         alert(this.responseText);
     }
-}
-
-function saveNewRadioButton(){
-    let item = {};
-    item.deviceId = deviceId();
-    item.playlistId = document.getElementById("playlists").value;
-    radioButtons.push(item);
-    localStorage.setItem("radio_button", JSON.stringify(radioButtons));
-    refreshRadioButtons();
-}
-
-function refreshRadioButtons(){
-    let data = localStorage.getItem("radio_button");
-    if ( data != null){
-        radioButtons = JSON.parse(data);
-        if ( Array.isArray(radioButtons) ){
-            removeAllItems("radioButtons");
-            radioButtons.forEach( (item, index) => addRadioButton(item, index));
-        }
-    }
-}
-
-function onRadioButton( deviceId, playlistId ){
-    let body = {};
-    body.context_uri = "spotify:playlist:" + playlistId;
-    body.offset = {};
-    body.offset.position = 0;
-    body.offset.position_ms = 0;
-    callApi( "PUT", PLAY + "?device_id=" + deviceId, JSON.stringify(body), handleApiResponse );
-    //callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId, null, handleApiResponse );
-}
-
-function addRadioButton(item, index){
-    let node = document.createElement("button");
-    node.className = "btn btn-primary m-2";
-    node.innerText = index;
-    node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
-    document.getElementById("radioButtons").appendChild(node);
 }
 
 function fetchProfile() {
@@ -387,15 +377,17 @@ function populateUI(profile) {
         if ( profileTag != null ){
             document.getElementById("displayName").innerText = profileTag.display_name;
             const profileImage = new Image(200, 200);
-            profileImage.src = profileTag.images[0].url;
+            if (profileTag.images.length == 0){
+                profileImage.src = "../public/spotify.png";
+                document.getElementById("imgUrl").innerText = "No avatar uploaded.";
+            }
+            if (profileTag.images.length != 0){
+                profileImage.src = profileTag.images[1].url;
+            }
             document.getElementById("avatar").appendChild(profileImage);
-            document.getElementById("imgUrl").innerText = profileTag.images[0].url;
             document.getElementById("id").innerText = profileTag.id;
-            document.getElementById("email").innerText = profileTag.email;
             document.getElementById("uri").innerText = profileTag.uri;
             document.getElementById("uri").setAttribute("href", profileTag.external_urls.spotify);
-            document.getElementById("url").innerText = profileTag.href;
-            document.getElementById("url").setAttribute("href", profileTag.href);
         }
     }
     else if ( this.status == 204 ){
@@ -411,17 +403,39 @@ function populateUI(profile) {
 }
 
 function fetchTopArtists() {
-    callApi( "GET", artistsURL + "&time_range=short_term", null, populateTopArtists );
+    let timeRange = document.getElementById("artistRange").value;
+    if ( timeRange == "short" ){
+        callApi( "GET", artistsURL + "&time_range=short_term", null, populateTopArtists );
+    }
+    else if ( timeRange == "medium" ){
+        callApi( "GET", artistsURL + "&time_range=medium_term", null, populateTopArtists );
+    }
+    else if ( timeRange == "long" ){
+        callApi( "GET", artistsURL + "&time_range=long_term", null, populateTopArtists );
+    }
 }
 
-function populateTopArtists(topArtists) {
+function populateTopArtists() {
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
         console.log(data);
-        const top5Tag = data;
+        removeAllItems( "topartist" );
+        
         for (let i = 0; i < 5; i++) {
-            let arr = top5Tag.items[i].name;
-            document.getElementById("topartist").innerHTML += JSON.stringify(arr) + " | ";
+            let node = document.createElement("div");
+            const artistAvi = new Image(200, 200);
+            
+            node.innerHTML = data.items[i].name;
+            
+            if (data.items[i].images.length == 0){
+                artistAvi.src = "../public/spotify.png";
+            }
+            if (data.items[i].images.length != 0){
+                artistAvi.src = data.items[i].images[0].url;
+            }
+            
+            document.getElementById("topartist").appendChild(artistAvi);
+            document.getElementById("topartist").appendChild(node);
         }
     }
     else if ( this.status == 204 ){
@@ -437,32 +451,46 @@ function populateTopArtists(topArtists) {
 }
 
 function fetchTopTracks() {
-    callApi( "GET", tracksURL + "&time_range=short_term", null, populateTopTracks );
+    let timeRange = document.getElementById("trackRange").value;
+    if ( timeRange == "short" ){
+        callApi( "GET", tracksURL + "&time_range=short_term", null, populateTopTracks );
+    }
+    else if ( timeRange == "medium" ){
+        callApi( "GET", tracksURL + "&time_range=medium_term", null, populateTopTracks );
+    }
+    else if ( timeRange == "long" ){
+        callApi( "GET", tracksURL + "&time_range=long_term", null, populateTopTracks );
+    }
 }
 
-function populateTopTracks(topArtists, topTracks) {
+function populateTopTracks() {
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
         console.log(data);
+        removeAllItems( "toptrack" );
         const top10Tag = data;
-        for (let i = 0; i < 10; i++) {
-            
-            let arrSong = top10Tag.items[i].name;
-            let arrArtist = top10Tag.items[i].artists;
-            let arrLength = top10Tag.items[i].artists.length;
-            
-            if (arrLength != 1) {
-                document.getElementById("toptrack").innerHTML += JSON.stringify(arrSong) + " - ";
 
+        for (let i = 0; i < 10; i++) {
+            let node = document.createElement("li");
+            let arrLength = top10Tag.items[i].artists.length;
+            if (arrLength > 1) {
+                node.innerHTML = top10Tag.items[i].name + " by ";
                 for (let j = 0; j <= arrLength-1; j++) {
-                    document.getElementById("toptrack").innerHTML += JSON.stringify(arrArtist[j].name);
+                    if (j == arrLength-1) {
+                        node.innerHTML += " & " + top10Tag.items[i].artists[j].name + " (⭐️ " + top10Tag.items[i].popularity + ") ";
+                    }
+                    else if (j > 0 && j < arrLength-1) {
+                        node.innerHTML += ", ";
+                    }
+                    else {
+                        node.innerHTML += top10Tag.items[i].artists[j].name;
+                    }
                 }
-                document.getElementById("toptrack").innerHTML += " | "
             }
-                
-            else {
-                document.getElementById("toptrack").innerHTML += JSON.stringify(arrSong) + " - " + JSON.stringify(arrArtist[0].name) + " | ";
+            else if (arrLength == 1){
+                node.innerHTML = top10Tag.items[i].name + " by " + top10Tag.items[i].artists[0].name + " (⭐️ " + top10Tag.items[i].popularity + ") ";
             }
+            document.getElementById("toptrack").appendChild(node);
         }
     }
     else if ( this.status == 204 ){
