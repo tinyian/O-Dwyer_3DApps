@@ -1,7 +1,11 @@
+var client_id = "650c310f0b86447a986d654cad6f4053";
+var client_secret = "";
 var redirect_uri = "http://users.sussex.ac.uk/~io202/dissertation/client/public/index.html";
 
-var client_id = "";
-var client_secret = ""; // In a real app you should not expose your client_secret to the user
+let codeVerifier = generateRandomString(128);
+const urlParams = new URLSearchParams(window.location.search);
+let code = urlParams.get('code');
+
 
 var access_token = null;
 var refresh_token = null;
@@ -22,6 +26,7 @@ const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
 const profileURL = "https://api.spotify.com/v1/me";
 const artistsURL = "https://api.spotify.com/v1/me/top/artists?limit=5";
 const tracksURL = "https://api.spotify.com/v1/me/top/tracks?limit=10";
+const genreURL = "https://api.spotify.com/v1/artists/{id}";
 
 function onPageLoad(){
     client_id = localStorage.getItem("client_id");
@@ -34,26 +39,124 @@ function onPageLoad(){
         if ( access_token == null ){
             // we don't have an access token so present token section
             document.getElementById("deviceSection").style.display = 'none';
-            document.getElementById("tokenSection").style.display = 'block';
+            document.getElementById("tokenSection").style.display = 'grid';
+            document.getElementById("webgl").style.display = 'none';
+            document.getElementById("topBtn").style.display = 'none';
         }
         else {
             // we have an access token so present device section
-            document.getElementById("deviceSection").style.display = 'block';
+            document.getElementById("deviceSection").style.display = 'grid';
             document.getElementById("tokenSection").style.display = 'none';
+            document.getElementById("webgl").style.display = 'show';
+            document.getElementById("topBtn").style.display = 'show';
             
             const topArtists = fetchTopArtists();
             const topTracks = fetchTopTracks();
             const profile = fetchProfile();
+            const genre = fetchGenre();
             populateUI(profile);
             populateTopArtists(topArtists);
             populateTopTracks(topArtists, topTracks);
+            populateGenre(genre);
             
             fetchTracks();
             refreshDevices();
             refreshPlaylists();
+            currentlyPlaying();
         }
     }
 }
+
+//login test tings
+
+function generateRandomString(length) {
+  let text = '';
+  let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (let i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
+
+async function generateCodeChallenge(codeVerifier) {
+  function base64encode(string) {
+    return btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '');
+  }
+
+  const encoder = new TextEncoder();
+  const data = encoder.encode(codeVerifier);
+  const digest = await window.crypto.subtle.digest('SHA-256', data);
+
+  return base64encode(digest);
+}
+
+generateCodeChallenge(codeVerifier).then(codeChallenge => {
+  let state = generateRandomString(16);
+  let scope = 'user-read-private user-read-email';
+
+  localStorage.setItem('code_verifier', codeVerifier);
+
+  let args = new URLSearchParams({
+    response_type: 'code',
+    client_id: clientId,
+    scope: scope,
+    redirect_uri: redirectUri,
+    state: state,
+    code_challenge_method: 'S256',
+    code_challenge: codeChallenge
+  });
+
+  window.location = 'https://accounts.spotify.com/authorize?' + args;
+});
+
+let codeVerifier = localStorage.getItem('code_verifier');
+
+let body = new URLSearchParams({
+  grant_type: 'authorization_code',
+  code: code,
+  redirect_uri: redirectUri,
+  client_id: clientId,
+  code_verifier: codeVerifier
+});
+
+const response = fetch('https://accounts.spotify.com/api/token', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: body
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('HTTP status ' + response.status);
+    }
+    return response.json();
+  })
+  .then(data => {
+    localStorage.setItem('access_token', data.access_token);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+async function getProfile(accessToken) {
+  let accessToken = localStorage.getItem('access_token');
+
+  const response = await fetch('https://api.spotify.com/v1/me', {
+    headers: {
+      Authorization: 'Bearer ' + accessToken
+    }
+  });
+
+  const data = await response.json();
+    console.log(data);
+}
+
+//login test tings
 
 function handleRedirect(){
     let code = getCode();
@@ -146,25 +249,21 @@ function handleApiResponse(){
     if ( this.status == 200){
         console.log(this.responseText);
         setTimeout(currentlyPlaying, 2000);
-        setTimeout(refreshPlaylists, 2000);
-        setTimeout(fetchTracks, 2000);
     }
     else if ( this.status == 204 ){
         setTimeout(currentlyPlaying, 2000);
-        setTimeout(refreshPlaylists, 2000);
-        setTimeout(fetchTracks, 2000);
     }
     else if ( this.status == 401 ){
-        refreshAccessToken()
+        refreshAccessToken();
     }
     else {
         console.log(this.responseText);
-        alert(this.responseText);
+//        alert(this.responseText);
     }
 }
 
 function refreshDevices(){
-    callApi( "GET", DEVICES, null, handleDevicesResponse);
+    callApi( "GET", DEVICES, null, handleDevicesResponse );
 }
 
 function handleDevicesResponse(){
@@ -175,7 +274,7 @@ function handleDevicesResponse(){
         data.devices.forEach(item => addDevice(item));
     }
     else if ( this.status == 401 ){
-        refreshAccessToken()
+        refreshAccessToken();
     }
     else {
         console.log(this.responseText);
@@ -207,7 +306,7 @@ function handlePlaylistsResponse(){
         data.items.forEach(item => addArt(item));
     }
     else if ( this.status == 401 ){
-        refreshAccessToken()
+        refreshAccessToken();
     }
     else {
         console.log(this.responseText);
@@ -246,19 +345,29 @@ function play(){
     let body = {};
     
     body.context_uri = "spotify:playlist:" + playlist_id;
-    
     body.offset = {};
     body.offset.position = trackindex.length > 0 ? Number(trackindex) : 0;
-    body.offset.position_ms = 0;
+    body.offset.position_ms = 12000;
+    
     callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
 }
 
 function shuffle(){
-    callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId(), null, handleApiResponse );
-    play();
+    let state = document.getElementById("shuffle").title;
+    
+    if (state == "false") {
+        callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId(), null, handleApiResponse );
+//        play();
+    }
+    
+    if (state == "true") {
+        callApi( "PUT", SHUFFLE + "?state=false&device_id=" + deviceId(), null, handleApiResponse );
+//        play();
+    }
 }
 
 function pause(){
+//    currentlyPlaying();
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
 
@@ -294,9 +403,12 @@ function handleTracksResponse(){
         var data = JSON.parse(this.responseText);
         let i = 0;
         let ms  = 0;
+        
         console.log(data);
+
         removeAllItems( "tracks" );
         data.items.forEach( (item, index) => addTrack(item, index));
+        
         document.getElementById("trackTotal").innerText = data.items.length + " songs";
         
         while (data.items[i] != null){
@@ -333,10 +445,42 @@ function handleCurrentlyPlayingResponse(){
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
         console.log(data);
+        removeAllItems( "albumImage" );
+        
         if ( data.item != null ){
-            document.getElementById("albumImage").src = data.item.album.images[0].url;
+            const album_art = new Image(200, 200);
+            album_art.src = data.item.album.images[0].url;
+            
+            document.getElementById("albumImage").appendChild(album_art);
             document.getElementById("trackTitle").innerHTML = data.item.name;
             document.getElementById("trackArtist").innerHTML = data.item.artists[0].name;
+            
+            let artist_id = data.item.artists[0].id;
+            document.getElementById("current_id").value = artist_id;
+            document.getElementById("current_id").innerHTML = data.item.artists[0].name + ": " + artist_id;
+            
+            document.getElementById("shuffle").title = data.shuffle_state;
+            document.getElementById("playhead").value = data.progress_ms;
+            document.getElementById("playhead").innerHTML = data.progress_ms;
+            
+//            refreshDevices();
+            refreshPlaylists();
+//            fetchTracks();
+            fetchGenre();
+            
+            let playlist_id = document.getElementById("playlists").value;
+            
+            if (playlist_id == null) {
+                refreshPlaylists();
+                currentlyPlaying();
+            }
+            
+            if (data.is_playing == true){
+                document.getElementById("playerStatus").innerText = " listening to ";
+            }
+            if (data.is_playing == false){
+                document.getElementById("playerStatus").innerText = " paused ";
+            }
         }
 
 
@@ -354,14 +498,17 @@ function handleCurrentlyPlayingResponse(){
         }
     }
     else if ( this.status == 204 ){
-            document.getElementById("albumImage").src = "../public/spotify.png";
+        const album_art = new Image(200, 200);
+        album_art.src = "../public/spotify.png";
+        document.getElementById("albumImage").appendChild(album_art);
+        document.getElementById("playerStatus").innerText = " not listening to anything. x";
     }
     else if ( this.status == 401 ){
         refreshAccessToken()
     }
     else {
         console.log(this.responseText);
-        alert(this.responseText);
+//        alert(this.responseText);
     }
 }
 
@@ -376,18 +523,22 @@ function populateUI(profile) {
         const profileTag = data;
         if ( profileTag != null ){
             document.getElementById("displayName").innerText = profileTag.display_name;
+            document.getElementById("profileName").innerText = profileTag.display_name;
             const profileImage = new Image(200, 200);
             if (profileTag.images.length == 0){
                 profileImage.src = "../public/spotify.png";
-                document.getElementById("imgUrl").innerText = "No avatar uploaded.";
+                profileImage.title = "No avatar uploaded.";
+                profileImage.id = "userPFP";
             }
             if (profileTag.images.length != 0){
                 profileImage.src = profileTag.images[1].url;
+                profileImage.id = "userPFP";
             }
-            document.getElementById("avatar").appendChild(profileImage);
-            document.getElementById("id").innerText = profileTag.id;
-            document.getElementById("uri").innerText = profileTag.uri;
-            document.getElementById("uri").setAttribute("href", profileTag.external_urls.spotify);
+            document.getElementById("userAvi").appendChild(profileImage);
+            document.getElementById("id").innerText = "@" + profileTag.id;
+            document.getElementById("followers").innerText = "Followers: " + profileTag.followers.total;
+            document.getElementById("country").innerText = profileTag.country;
+            document.getElementById("userAvi").setAttribute("href", profileTag.external_urls.spotify);
         }
     }
     else if ( this.status == 204 ){
@@ -419,13 +570,11 @@ function populateTopArtists() {
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
         console.log(data);
-        removeAllItems( "topartist" );
+        removeAllItems( "artistAvi" );
+        removeAllItems( "artistName" );
         
         for (let i = 0; i < 5; i++) {
-            let node = document.createElement("div");
             const artistAvi = new Image(200, 200);
-            
-            node.innerHTML = data.items[i].name;
             
             if (data.items[i].images.length == 0){
                 artistAvi.src = "../public/spotify.png";
@@ -434,9 +583,18 @@ function populateTopArtists() {
                 artistAvi.src = data.items[i].images[0].url;
             }
             
-            document.getElementById("topartist").appendChild(artistAvi);
-            document.getElementById("topartist").appendChild(node);
+            document.getElementById("artistAvi").appendChild(artistAvi);
         }
+        
+        for (let j = 0; j < 5; j++) {
+            let node = document.createElement("h3");
+            
+            node.innerHTML = data.items[j].name;
+            node.id = "artist";
+            
+            document.getElementById("artistName").appendChild(node);
+        }
+        
     }
     else if ( this.status == 204 ){
 
@@ -480,7 +638,11 @@ function populateTopTracks() {
                         node.innerHTML += " & " + top10Tag.items[i].artists[j].name + " (⭐️ " + top10Tag.items[i].popularity + ") ";
                     }
                     else if (j > 0 && j < arrLength-1) {
-                        node.innerHTML += ", ";
+                        node.innerHTML += top10Tag.items[i].artists[j].name + ", ";
+                    }
+                    //3+ artists
+                    else if (j == 0 && 2 <= arrLength-1) {
+                        node.innerHTML += top10Tag.items[i].artists[j].name + ", ";
                     }
                     else {
                         node.innerHTML += top10Tag.items[i].artists[j].name;
@@ -503,4 +665,37 @@ function populateTopTracks() {
 //        console.log(this.responseText);
 //        alert(this.responseText);
     }
+}
+
+function fetchGenre(){
+    let artist_id = document.getElementById("current_id").value;
+    if ( artist_id.length > 0 ){
+        url = genreURL.replace("{id}", artist_id);
+        callApi( "GET", url, null, populateGenre );
+    }
+}
+
+function populateGenre(){
+   if ( this.status == 200 ){
+       var data = JSON.parse(this.responseText);
+       console.log(data);
+       
+       removeAllItems( "genre" );
+       
+       for (let i = 0; i != data.genres.length; i++) {
+           let node = document.createElement("h3");
+           
+           node.innerHTML = data.genres[i];
+           node.id = "genre";
+           
+           document.getElementById("genre").appendChild(node);
+       }
+   }
+   else if ( this.status == 401 ){
+       refreshAccessToken()
+   }
+   else {
+       console.log(this.responseText);
+       alert(this.responseText);
+   }
 }

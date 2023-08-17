@@ -1,6 +1,8 @@
 import * as THREE from '/~io202/dissertation/client/node_modules/.vite/deps/three.js?v=734c07de';
 import { OrbitControls } from '/~io202/dissertation/client/node_modules/.vite/deps/three_examples_jsm_controls_OrbitControls.js?v=46295345';
 
+var style = getComputedStyle(document.body);
+
 // Canvas Setup
 
 const scene = new THREE.Scene();
@@ -21,17 +23,29 @@ renderer.render(scene, camera);
 // Torus
 
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xDBCAED });
+const material = new THREE.MeshStandardMaterial({
+    color: style.getPropertyValue('--accent'),
+    roughness: 0.0,
+    metalness: 0.0,
+    flatShading: false,
+});
 const torus = new THREE.Mesh(geometry, material);
 
 scene.add(torus);
 
 // Lights
 
-const pointLight = new THREE.PointLight(0xFAfAFA, 25);
+const pointLight = new THREE.PointLight({
+    color: 0xFAfAFA,
+    intensity: 1,
+    decay: 2,
+});
 pointLight.position.set(5, 5, 5);
 
-const ambientLight = new THREE.AmbientLight(0x404040, 25);
+const ambientLight = new THREE.AmbientLight({
+    color: 0x404040,
+    intensity: 1,
+});
 scene.add(pointLight, ambientLight);
 
 // Helpers
@@ -44,7 +58,9 @@ scene.add(pointLight, ambientLight);
 
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const material = new THREE.MeshStandardMaterial({
+        color: style.getPropertyValue('--primary'),
+    });
   const star = new THREE.Mesh(geometry, material);
 
   const [x, y, z] = Array(3)
@@ -59,30 +75,42 @@ Array(200).fill().forEach(addStar);
 
 // Background
 
-const spaceTexture = new THREE.TextureLoader().load('../src/assets/images/bedroom.png');
+const colorTexture = new THREE.TextureLoader().load({ color: style.getPropertyValue('--bg-color') });
 
-scene.background = spaceTexture;
+scene.background = colorTexture;
 
 // Avatar
 
-//const cubeURL = //spotify API call
+//const cubeTexture = new THREE.TextureLoader().load('../public/favicon.png');
 
-const batTexture = new THREE.TextureLoader().load('../src/assets/images/bat.jpg');
+const cubeGeo = new THREE.BoxGeometry(3, 3, 3);
+                                                   
+const cubeMat = new THREE.MeshStandardMaterial({
+    color: 0xd88db6,
+    roughness: 0.0,
+    metalness: 0.0,
+    flatShading: false,
+});
 
-const bat = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: batTexture }));
+const cube = new THREE.Mesh(cubeGeo, cubeMat);
 
-scene.add(bat);
+scene.add(cube);
 
 // Ball
 
-const paperTexture = new THREE.TextureLoader().load('../src/assets/images/pool.jpg');
-const normalTexture = new THREE.TextureLoader().load('../src/assets/images/normal2.jpg');
+const paperTexture = new THREE.TextureLoader().load('../src/assets/images/paper.jpg');
+const normalTexture = new THREE.TextureLoader().load('../src/assets/images/paper_normal.jpg');
+const roughTexture = new THREE.TextureLoader().load('../src/assets/images/paper_rough.jpg');
 
 const paper = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
   new THREE.MeshStandardMaterial({
     map: paperTexture,
     normalMap: normalTexture,
+    roughness: 0.0,
+    roughnessMap: roughTexture,
+//    emissive: style.getPropertyValue('--primary'),
+//    emissiveIntensity: 1.0,
   })
 );
 
@@ -91,8 +119,8 @@ scene.add(paper);
 paper.position.z = 30;
 paper.position.setX(-10);
 
-bat.position.z = -5;
-bat.position.x = 2;
+cube.position.z = -5;
+cube.position.x = 2;
 
 // Scroll Animation
 
@@ -102,8 +130,8 @@ function moveCamera() {
   paper.rotation.y += 0.075;
   paper.rotation.z += 0.05;
 
-  bat.rotation.y += 0.01;
-  bat.rotation.z += 0.01;
+  cube.rotation.y += 0.01;
+  cube.rotation.z += 0.01;
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;

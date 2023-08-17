@@ -24,25 +24,40 @@
 
 /* Basic HTML Components */
 
+#tokenSection {
+    grid-column: 1 / span 12;
+    height: 0;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'Inter', sans-serif;
+    display: grid;
 }
 
 canvas {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 89;
 }
 
 main {
     width: 100%;
-    z-index: 97;
+    z-index: 90;
     margin: 0px auto;
-    padding: 120px 0px;
-    display: grid;
+    padding: 7rem 0;
+    display: inherit;
     grid-template-columns: repeat(12, 1fr);
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: transform 500ms cubic-bezier(.13,.53,.38,.97);
+}
+
+section {
+    display: inherit;
 }
 
 .page {
@@ -54,6 +69,7 @@ main {
     transform: translateX(100px);
     opacity: 0;
     transition: 150ms;
+    z-index: 97;
 }
 
 .page.show {
@@ -64,6 +80,9 @@ main {
 /* Floating Toolbar */
 
 #tools {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -90,6 +109,8 @@ main {
     background-color: var(--secondary);
     border-radius: 100px;
     white-space: nowrap;
+    filter: drop-shadow(0px 0px 5px var(--accent));
+    transition: filter 0.4s ease-in-out;
 transition: color 0.4s ease-in-out;
   transition: background-color 0.4s ease-in-out;
 }
@@ -97,9 +118,18 @@ transition: color 0.4s ease-in-out;
 #topBtn:hover {
   color: var(--bg-color);
   background-color: var(--accent);
+  filter: drop-shadow(0px 0px 2px var(--accent));
 }
 
 #theme {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2vh;
+}
+
+#themeBtn {
     position: relative;
 
     /* visual styling */
@@ -111,21 +141,56 @@ transition: color 0.4s ease-in-out;
     background-color: var(--secondary);
     border-radius: 100px;
     white-space: nowrap;
+    filter: drop-shadow(0px 0px 5px var(--accent));
+    transition: filter 0.4s ease-in-out;
 transition: color 0.4s ease-in-out;
   transition: background-color 0.4s ease-in-out;
 }
 
-#theme:hover {
+#themeBtn:hover {
   color: var(--bg-color);
   background-color: var(--accent);
+  filter: drop-shadow(0px 0px 2px var(--accent));
+}
+
+#controlBtn {
+    position: relative;
+
+    /* visual styling */
+    text-decoration: none;
+    border: none;
+    padding: 10px;
+    font-size: 12;
+  color: var(--text-color);
+    background-color: var(--secondary);
+    border-radius: 100px;
+    white-space: nowrap;
+    filter: drop-shadow(0px 0px 5px var(--accent));
+    transition: filter 0.4s ease-in-out;
+transition: color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
+}
+
+#controlBtn:hover {
+  color: var(--bg-color);
+  background-color: var(--accent);
+  filter: drop-shadow(0px 0px 2px var(--accent));
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2vh;
+    gap: .25rem;
 }
 
 /* Text Styles */
 
 blockquote {
     margin: 0;
-    padding: 5;
-    grid-column: 2 / span 9;
+    padding: 1rem;
 }
 
 blockquote p {
@@ -158,7 +223,6 @@ p, li {
 
 a, span {
     color: var(--text-color);
-    background-color: var(--secondary);
 }
 
 i {
@@ -172,7 +236,9 @@ label {
 }
 
 input {
-  width: 25%;
+  width: auto;
+  height: 5vh;
+  position: relative;
   padding: 10px;
   border-radius: 4rem;
     color: var(--text-color);
@@ -188,15 +254,16 @@ input:hover {
 }
 
 select {
-  width: auto;
-  padding: 10px;
-  border: none;
-  border-radius: 4rem;
-  color: var(--text-color);
-  background-color: var(--secondary);
-  transition: width 0.4s ease-in-out;
-  transition: color 0.4s ease-in-out;
-  transition: background-color 0.4s ease-in-out;
+    width: auto;
+    height: 5vh;
+    padding-left: 1vh;
+    position: relative;
+    border: none;
+    border-radius: 4rem;
+    color: var(--text-color);
+    background-color: var(--secondary);
+    transition: color 0.4s ease-in-out;
+    transition: background-color 0.4s ease-in-out;
 }
 
 select:hover {
@@ -206,20 +273,334 @@ select:hover {
 
 /* Sections */
 
+#login {
+    background: var(--primary);
+    color: var(--text-color);
+    font-size: 2.5rem;
+    padding: 2rem;
+    height: auto;
+    justify-items: center;
+    justify-content: center;
+}
+
+
 #header {
     background: var(--primary);
     color: var(--text-color);
     font-size: 2.5rem;
     padding: 2rem;
-    grid-column: 2 / span 5;
+    grid-column: 2 / 12;
 }
 
 #profile {
-    grid-column: 2 / 10;
+    padding: 2rem;
+    grid-column: 6 / 10;
+    rotate: -20deg;
+    scale: 75%;
+}
+
+#profileHead {
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+        left: -14px;
+        position: relative;
+        z-index: 94;
+}
+
+#profileText {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+#profileBody {
+    display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: center;
+        gap: 79px;
+        margin-left: 10px;
+        position: relative;
+        z-index: 94;
+}
+
+#userAvi {
+    width: 175px;
+        height: 175px;
+        scale: 75%;
+}
+
+#userPFP {
+    border: none;
+    border-radius: 10rem;
+}
+
+#iPod {
+    z-index: 94;
+}
+
+#menu {
+    font-size: 24px;
+    position: absolute;
+    top: 365px;
+    color: var(--primary);
+    font-weight: bold;
+    left: 165px;
+}
+
+#back {
+    font-size: 36px;
+    position: absolute;
+    top: 467px;
+    color: var(--primary);
+    font-weight: bold;
+    left: 84px;
+}
+
+#forward {
+    font-size: 36px;
+    position: absolute;
+    top: 465px;
+    color: var(--primary);
+    font-weight: bold;
+    left: 286px;
+}
+
+#playpause {
+    position: absolute;
+    top: 568px;
+    left: 180px;
+}
+
+#playpause > i{
+    font-size: 36px;
+    position: relative;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+#profile_gfx_1 {
+    background: var(--bg-color);
+        width: 357px;
+        height: 300px;
+        opacity: 100%;
+        border: none;
+        border-radius: 2rem;
+        position: absolute;
+        margin-top: 22px;
+        margin-left: 22px;
+        z-index: 93;
+}
+
+#profile_gfx_2 {
+    background: var(--secondary);
+    width: 400px;
+    height: 650px;
+    opacity: 100%;
+    border: none;
+    border-radius: 2rem;
+    position: absolute;
+    margin-top: 0px;
+    filter: drop-shadow(-10mm 15mm 14mm var(--primary));
+    z-index: 92;
+}
+
+#profile_gfx_3 {
+    background: var(--accent);
+    width: 290px;
+    height: 290px;
+    opacity: 100%;
+    border: none;
+    border-radius: 10rem;
+    position: absolute;
+    margin-top: 340px;
+    margin-left: 56px;
+    z-index: 93;
+}
+
+#profile_gfx_4 {
+    background: var(--secondary);
+    width: 75px;
+    height: 75px;
+    opacity: 100%;
+    border: none;
+    border-radius: 10rem;
+    position: absolute;
+    margin-top: 446px;
+        margin-left: 167px;
+    z-index: 94;
 }
 
 #topArtists {
-    grid-column: 2 / 10;
+    padding: 2rem;
+    grid-column: 2 / 12;
+}
+
+#artistRange {
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: italic;
+}
+
+#artistTile {
+    display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+}
+
+#artistAvi {
+    display: grid;
+        justify-content: start;
+        align-items: center;
+}
+
+#artistAvi > img {
+    padding: 2rem;
+    border: none;
+    border-radius: 10rem;
+    z-index: 94;
+    transition: scale 0.2s ease-in-out;
+}
+
+#artistName {
+    display: grid;
+        grid-row-gap: 11rem;
+        padding-left: 1rem;
+        justify-items: end;
+}
+
+#artistName > h3 {
+    z-index: 94;
+}
+
+#artistAvi > img:hover {
+    scale: 105%;
+}
+
+.Circle {
+    width: 200px;
+    height: 200px;
+    opacity: 100%;
+    border: none;
+    border-radius: 10rem;
+    position: absolute;
+    transition: scale 0.2s ease-in-out;
+    margin-top: -6rem;
+}
+
+#artist_gfx_1 {
+    background: var(--accent);
+        top: 19rem;
+        left: 7rem;
+        z-index: 93;
+        
+}
+
+#artist_gfx_2 {
+    background: var(--primary);
+        top: 19rem;
+        left: 9rem;
+        z-index: 92;
+}
+
+#artist_gfx_3 {
+    background: var(--secondary);
+        top: 19rem;
+        left: 10rem;
+        z-index: 91;
+}
+
+#artist_gfx_4 {
+    background: var(--accent);
+        top: 35.45rem;
+        left: 7rem;
+        z-index: 93;
+}
+
+#artist_gfx_5 {
+    background: var(--primary);
+    top: 35.45rem;
+        left: 9rem;
+        z-index: 92;
+}
+
+#artist_gfx_6 {
+    background: var(--secondary);
+    top: 35.45rem;
+        left: 10rem;
+        z-index: 91;
+}
+
+#artist_gfx_7 {
+    background: var(--accent);
+        top: 52rem;
+        left: 7rem;
+        z-index: 93;
+}
+
+#artist_gfx_8 {
+    background: var(--primary);
+    top: 52rem;
+        left: 9rem;
+        z-index: 92;
+}
+
+#artist_gfx_9 {
+    background: var(--secondary);
+    top: 52rem;
+        left: 10rem;
+        z-index: 91;
+}
+
+#artist_gfx_10 {
+    background: var(--accent);
+        top: 68.45rem;
+        left: 7rem;
+        z-index: 93;
+}
+
+#artist_gfx_11 {
+    background: var(--primary);
+    top: 68.45rem;
+        left: 9rem;
+        z-index: 92;
+}
+
+#artist_gfx_12 {
+    background: var(--secondary);
+    top: 68.45rem;
+        left: 10rem;
+        z-index: 91;
+}
+
+#artist_gfx_13 {
+    background: var(--accent);
+        top: 85rem;
+        left: 7rem;
+        z-index: 93;
+}
+
+#artist_gfx_14 {
+    background: var(--primary);
+    top: 85rem;
+        left: 9rem;
+        z-index: 92;
+}
+
+#artist_gfx_15 {
+    background: var(--secondary);
+    top: 85rem;
+        left: 10rem;
+        z-index: 91;
+}
+
+.Circle:hover {
+    scale: 105%;
 }
 
 #tagline {
@@ -231,7 +612,24 @@ select:hover {
     color: var(--text-color);
     font-size: 2.5rem;
     padding: 2rem;
-    grid-column: 2 / 10;
+    grid-column: 1 / span 12;
+}
+
+#current {
+    display: flex;
+    gap: 1rem;
+}
+
+#playlistInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#songInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 #quote {
@@ -239,7 +637,13 @@ select:hover {
 }
 
 #topTracks {
-    grid-column: 2 / 10;
+    grid-column: 2 / 12;
+}
+
+#trackRange {
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: italic;
 }
 
 #visuals {
@@ -247,7 +651,58 @@ select:hover {
     color: var(--text-color);
     font-size: 2.5rem;
     padding: 2rem;
-    grid-column: 2 / 10;
+    grid-column: 1 / span 12;
+    height: 60vh;
+    width: 100vh;
+    overflow: hidden;
+}
+
+#vis {
+    z-index: 93;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}
+
+@keyframes rotate {
+  from {
+    rotate: 0deg;
+  }
+  
+  50% {
+    scale: 1 1.5;
+  }
+  
+  to {
+    rotate: 360deg;
+  }
+}
+
+#blob {
+  background-color: pink;
+  height: 500px;
+  aspect-ratio: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: linear-gradient(to right, pink, red);
+  animation: rotate 20s infinite;
+  opacity: 0.8;
+  z-index: 91;
+}
+
+#blur {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 92;
+  backdrop-filter: blur(200px);
 }
 
 #refs {
@@ -255,7 +710,9 @@ select:hover {
 }
 
 #share {
-    grid-column: 6 / 12;
+    grid-column: 1 / span 12;
+    grid-row-gap: 5rem;
+    margin-bottom: 0;
 }
 
 html,

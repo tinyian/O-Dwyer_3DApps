@@ -12,12 +12,27 @@ toggleThemeBtn.addEventListener('click', function() {
     
     var x = document.getElementById("moon");
     var y = document.getElementById("sun");
+    var z = document.getElementById("logo-light");
+    var a = document.getElementById("logo-dark");
+    var b = document.getElementById("login-light");
+    var c = document.getElementById("login-dark");
+   
+    
     if (x.style.display === "none") {
-      x.style.display = "block";
+      x.style.display = "grid";
       y.style.display = "none";
+        z.style.display = "none";
+        a.style.display = "block";
+        b.style.display = "none";
+        c.style.display = "block";
+        
     } else {
       x.style.display = "none";
-      y.style.display = "block";
+      y.style.display = "grid";
+        z.style.display = "block";
+        a.style.display = "none";
+        b.style.display = "block";
+        c.style.display = "none";
     }
 })
 
@@ -50,5 +65,16 @@ pages.forEach(page => {
     observer.observe(page)
 })
 
-/* Select Resizing */
+//blob
+
+const blob = document.getElementById("blob");
+
+document.body.onpointermove = event => {
+  const { clientX, clientY } = event;
+  
+  blob.animate({
+    left: `${clientX}px`,
+    top: `${clientY}px`
+  }, { duration: 3000, fill: "forwards" });
+}
 
