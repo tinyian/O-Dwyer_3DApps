@@ -1,4 +1,4 @@
-var redirect_uri = "http://users.sussex.ac.uk/~io202/dissertation/client/public/diss.html";
+var redirect_uri = "http://users.sussex.ac.uk/~io202/dissertation/client/public/index.html";
 
 var client_id = "";
 var client_secret = "";
@@ -194,6 +194,10 @@ function addDevice(item){
     document.getElementById("devices").appendChild(node);
 }
 
+function deviceId(){
+    return document.getElementById("devices").value;
+}
+
 function refreshPlaylists(){
     callApi( "GET", PLAYLISTS, null, handlePlaylistsResponse );
 }
@@ -289,10 +293,6 @@ function transfer(){
     body.device_ids = [];
     body.device_ids.push(deviceId())
     callApi( "PUT", PLAYER, JSON.stringify(body), handleApiResponse );
-}
-
-function deviceId(){
-    return document.getElementById("devices").value;
 }
 
 function fetchTracks(){
@@ -433,10 +433,13 @@ function populateUI(profile) {
             if (profileTag.images.length == 0){
                 profileImage.src = "../public/spotify.png";
                 profileImage.title = "No avatar uploaded.";
+                profileImage.alt = "No avatar uploaded.";
                 profileImage.id = "userPFP";
             }
             if (profileTag.images.length != 0){
                 profileImage.src = profileTag.images[1].url;
+                profileImage.title = "User avatar.";
+                profileImage.alt = "User avatar.";
                 profileImage.id = "userPFP";
             }
             document.getElementById("userAvi").appendChild(profileImage);

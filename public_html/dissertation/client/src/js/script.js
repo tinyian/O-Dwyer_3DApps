@@ -78,3 +78,42 @@ document.body.onpointermove = event => {
   }, { duration: 3000, fill: "forwards" });
 }
 
+//share
+function shareOnSocialMedia(platform) {
+var url = ''; // Set the URL of your website's content
+
+switch (platform) {
+  case 'facebook':
+    url = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+    break;
+  case 'twitter':
+    url = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url);
+    break;
+  case 'instagram':
+    url = 'https://www.instagram.com/' + encodeURIComponent(url);
+    break;
+  case 'copy':
+    url = 'http://users.sussex.ac.uk/~io202/dissertation/client/public/index.html' + encodeURIComponent(url);
+    break;
+  // Add cases for other platforms
+}
+
+window.open(url, '_blank', 'width=600,height=400');
+}
+
+// Attach click event listeners to buttons
+document.getElementById('facebook-button').addEventListener('click', function() {
+shareOnSocialMedia('facebook');
+});
+
+document.getElementById('twitter-button').addEventListener('click', function() {
+shareOnSocialMedia('twitter');
+});
+
+document.getElementById('instagram-button').addEventListener('click', function() {
+shareOnSocialMedia('instagram');
+});
+
+document.getElementById('copy-button').addEventListener('click', function() {
+shareOnSocialMedia('copy');
+});

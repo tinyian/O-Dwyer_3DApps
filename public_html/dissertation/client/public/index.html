@@ -51,7 +51,7 @@
                       <div>
                           <label for="clientSecret" class="form-label">Client Secret</label>
                           <input type="text" class="form-control" id="clientSecret" placeholder=""></input>
-                          <p>d93f90ff7819433198162b0377bdecf8</p>
+                          <p>00a32595f8294eacbebc48485434ef7f</p>
                       </div>
                       <input class="btn btn-primary btn-lg" type="button" onclick="requestAuthorization()" value="Log in with Spotify"><br/>
                     </section>
@@ -164,7 +164,7 @@
                                   <input class="btn btn-primary btn-sm mt-3" type="button" onclick="fetchTracks()" value="Fetch Tracks">
                               </div>
                               
-                              <div id="playhead"></div>
+<!--                              <div id="playhead"></div>-->
                           </div>
                     </section>
 
@@ -207,12 +207,26 @@
                         <blockquote>
                           <p>🔁 Replay?</p>
                         </blockquote>
-                        <div>
-                            [insert links to share the site]
-                        </div>
+                        <div id="social-sharing-buttons">
+                            <div class="sharing-button" id="facebook-button">
+                                <i class="fa-brands fa-facebook" alt="Share on Facebook"></i>
+                              </div>
+                              <div class="sharing-button" id="twitter-button">
+                                  <i class="fa-brands fa-x-twitter" alt="Share on Twitter"></i>
+                              </div>
+                              <div class="sharing-button" id="instagram-button">
+                                  <i class="fa-brands fa-instagram" alt="Share on Instagram"></i>
+                              </div>
+                              <div class="sharing-button" id="copy-button">
+                                  <i class="fa-regular fa-copy" alt="Share Immersify" title="Click me to copy current URL"></i>
+                              </div>
+                          </div>
                     </section>
               </div>
       </main>
+      <footer>
+        <p>&copy; 2023 Ian O'Dwyer | Immersify</p>
+      </footer>
     
     <script type="text/javascript" src="../src/js/script.js"></script>
     <script type="module" src="../src/js/canvas.js"></script>

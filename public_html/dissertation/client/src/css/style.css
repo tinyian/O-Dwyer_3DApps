@@ -56,6 +56,15 @@ main {
     transition: transform 500ms cubic-bezier(.13,.53,.38,.97);
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    color: var(--accent);
+    font-weight: 900;
+    border-radius: 10rem;
+    background-color: var(--secondary);
+}
+
 section {
     display: inherit;
 }
@@ -705,14 +714,27 @@ select:hover {
   backdrop-filter: blur(200px);
 }
 
-#refs {
-    grid-column: 6 / 12;
-}
-
 #share {
     grid-column: 1 / span 12;
     grid-row-gap: 5rem;
     margin-bottom: 0;
+}
+
+#social-sharing-buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 3vw;
+    gap: 3rem;
+    color: var(--accent);
+}
+
+.sharing-button {
+  cursor: pointer;
+  margin: 5px;
+}
+
+.sharing-button > i {
+    font-size: 48px;
 }
 
 html,
