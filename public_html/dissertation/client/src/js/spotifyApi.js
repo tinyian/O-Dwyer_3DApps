@@ -365,8 +365,6 @@ function handleCurrentlyPlayingResponse(){
             document.getElementById("current_id").innerHTML = data.item.artists[0].name + ": " + artist_id;
             
             document.getElementById("shuffle").title = data.shuffle_state;
-            document.getElementById("playhead").value = data.progress_ms;
-            document.getElementById("playhead").innerHTML = data.progress_ms;
             
 //            refreshDevices();
             refreshPlaylists();
