@@ -1,7 +1,7 @@
 var redirect_uri = "http://users.sussex.ac.uk/~io202/dissertation/client/public/index.html";
 
-var client_id = "";
-var client_secret = "";
+var client_id = "650c310f0b86447a986d654cad6f4053";
+var client_secret = "d93f90ff7819433198162b0377bdecf8";
 
 var access_token = null;
 var refresh_token = null;
